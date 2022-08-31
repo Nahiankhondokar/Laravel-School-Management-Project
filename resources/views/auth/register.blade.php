@@ -40,6 +40,11 @@
 											<span class="input-group-text bg-transparent text-white"><i class="ti-user"></i></span>
 										</div>
 										<input type="text" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Full Name" name="name" required>
+										@error('name')
+										<span class="invalid-feedback" role="alert">
+										  <strong>{{ $message }}</strong>
+										</span>
+									  	@enderror
 									</div>
 								</div>
 								<div class="form-group">
@@ -48,6 +53,11 @@
 											<span class="input-group-text bg-transparent text-white"><i class="ti-email"></i></span>
 										</div>
 										<input type="email" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Email" name="email" required>
+										@error('email')
+										<span class="invalid-feedback" role="alert">
+										  <strong>{{ $message }}</strong>
+										</span>
+									  	@enderror
 									</div>
 								</div>
 								<div class="form-group">
@@ -56,6 +66,11 @@
 											<span class="input-group-text bg-transparent text-white"><i class="ti-lock"></i></span>
 										</div>
 										<input type="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Password" name="password" required>
+										@error('password')
+										<span class="invalid-feedback" role="alert">
+										  <strong>{{ $message }}</strong>
+										</span>
+									  	@enderror
 									</div>
 								</div>
 								<div class="form-group">
@@ -64,6 +79,11 @@
 											<span class="input-group-text bg-transparent text-white"><i class="ti-lock"></i></span>
 										</div>
 										<input type="password" class="form-control pl-15 bg-transparent text-white plc-white" placeholder="Retype Password" name="password_confirmation" required>
+										@error('password_confirmation')
+										<span class="invalid-feedback" role="alert">
+										  <strong>{{ $message }}</strong>
+										</span>
+									  	@enderror
 									</div>
 								</div>
 								  <div class="row">
