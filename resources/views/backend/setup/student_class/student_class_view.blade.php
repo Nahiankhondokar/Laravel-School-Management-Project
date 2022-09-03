@@ -34,7 +34,7 @@
                             <td>{{ $item -> name }}</td>
                             <td>
                                 <a href="{{ route('student.class.edit', $item ->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <a href="{{ route('user.delete', $item ->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
+                                <a id="delete" href="{{ route('student.class.delete', $item ->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach

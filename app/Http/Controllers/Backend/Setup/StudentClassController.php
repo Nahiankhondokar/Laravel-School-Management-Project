@@ -65,7 +65,7 @@ class StudentClassController extends Controller
 
         // validation
         $request -> validate([
-            'class_name'    => 'required|unique:student_classes,name'
+            'class_name'    => 'required|unique:student_classes,name,'.$id
         ]);
 
         // update
@@ -77,6 +77,24 @@ class StudentClassController extends Controller
         $notify = [
             'message'       => "Student Class Updated Succefully",
             'alert-type'    => "success"
+        ];
+        
+        return redirect() -> route('student.class.view') -> with($notify);
+
+
+    }
+    
+
+    // student class add page show
+    public function StudentClassDelete($id){
+
+        $delete = StudentClass::find($id);
+        $delete -> delete();
+
+        // msg
+        $notify = [
+            'message'       => "Student Class Deleted Succefully",
+            'alert-type'    => "info"
         ];
         
         return redirect() -> route('student.class.view') -> with($notify);
