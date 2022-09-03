@@ -1,3 +1,8 @@
+@php
+    $prefix = Request::route() -> getPrefix();
+    $route = Route::current() -> getName();
+@endphp
+
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar">	
@@ -24,7 +29,7 @@
           </a>
         </li>  
 		
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/user') ? 'active' : '' }}">
           <a href="#">
             <i data-feather="message-circle"></i>
             <span>Manage User</span>
@@ -33,12 +38,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('user.view') }}"><i class="ti-more"></i>View User</a></li>
-            <li><a href="{{ route('user.add') }}"><i class="ti-more"></i>Add User</a></li>
+            <li class="{{ ($route == 'user.view') ? 'active' : '' }}"><a href="{{ route('user.view') }}"><i class="ti-more"></i>View User</a></li>
+            <li class="{{ ($route == 'user.add') ? 'active' : '' }}"><a href="{{ route('user.add') }}"><i class="ti-more"></i>Add User</a></li>
           </ul>
         </li> 
 		  
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/profile') ? 'active' : '' }}">
           <a href="#">
             <i data-feather="mail"></i> <span>Manage Profile</span>
             <span class="pull-right-container">
@@ -46,9 +51,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
-            <li><a href="{{ route('pass.view') }}"><i class="ti-more"></i>Change Password</a></li>
-            <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+            <li class="{{ ($route == 'profile.view') ? 'active' : '' }}"><a href="{{ route('profile.view') }}"><i class="ti-more"></i>Your Profile</a></li>
+            <li class="{{ ($route == 'pass.view') ? 'active' : '' }}"><a href="{{ route('pass.view') }}"><i class="ti-more"></i>Change Password</a></li>
           </ul>
         </li>
 	  
