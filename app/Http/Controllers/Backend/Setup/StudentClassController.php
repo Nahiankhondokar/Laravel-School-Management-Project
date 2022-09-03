@@ -21,7 +21,6 @@ class StudentClassController extends Controller
     // student class add page show
     public function StudentClassAdd(){
 
-        $student = StudentClass::all();
         return view('backend.setup.student_class.student_class_add');
 
     }
@@ -49,7 +48,7 @@ class StudentClassController extends Controller
     }
 
 
-    // student class add page show
+    // student class edit page show
     public function StudentClassEdit($id){
 
         $student = StudentClass::find($id);
@@ -60,7 +59,7 @@ class StudentClassController extends Controller
     }
 
 
-    // student class add page show
+    // student class update page show
     public function StudentClassUpdate($id, Request $request){
 
         // validation
@@ -85,7 +84,7 @@ class StudentClassController extends Controller
     }
     
 
-    // student class add page show
+    // student class delete page show
     public function StudentClassDelete($id){
 
         $delete = StudentClass::find($id);
