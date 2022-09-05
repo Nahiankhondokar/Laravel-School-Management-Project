@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\Setup\AssignSubjectControlller;
+use App\Http\Controllers\Backend\Setup\DesignationController;
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
 use App\Http\Controllers\Backend\Setup\FeeAmountController;
 use App\Http\Controllers\Backend\Setup\FeeCategoryController;
@@ -154,7 +155,7 @@ Route::group(['prefix' => 'setup'], function(){
 
 
 
-    // schol subject rouets
+    // school subject rouets
     Route::get('/student/subject/view', [SchoolSubjectController::class, "SubjectView"]) -> name('subject.view'); 
     Route::get('/student/subject/add', [SchoolSubjectController::class, "SubjectAdd"]) -> name('subject.add');  
 
@@ -179,7 +180,19 @@ Route::group(['prefix' => 'setup'], function(){
 
     Route::get('/assign/subject/details/{class_id}', [AssignSubjectControlller::class, "AssignSubjectDetails"]) -> name('assign.subject.details'); 
 
-    // Route::get('/assign/subject/delete/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDelete"]) -> name('assign.subject.delete');
+    Route::get('/assign/subject/delete/{class_id}', [AssignSubjectControlller::class, "AssignSubjectDelete"]) -> name('assign.subject.delete');
+
+
+
+    // Designation all rouets
+    Route::get('/student/designation/view', [DesignationController::class, "DesignationView"]) -> name('designation.view'); 
+    Route::get('/student/designation/add', [DesignationController::class, "DesignationAdd"]) -> name('designation.add');  
+
+    Route::post('/student/designation/store', [DesignationController::class, "DesignationStore"]) -> name('designation.store'); 
+    Route::get('/student/designation/edit/{id}', [DesignationController::class, "DesignationEdit"]) -> name('designation.edit'); 
+    
+    Route::post('/student/designation/update/{id}', [DesignationController::class, "DesignationUpdate"]) -> name('designation.update');  
+    Route::get('/student/designation/delete/{id}', [DesignationController::class, "DesignationDelete"]) -> name('designation.delete');
 
 
 });

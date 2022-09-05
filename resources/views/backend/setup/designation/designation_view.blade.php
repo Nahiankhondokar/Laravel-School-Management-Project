@@ -12,8 +12,8 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Assign Subject List</h3>
-                <a href="{{ route('assign.subject.add') }}" class="btn btn-rounded btn-info float-right">Add Assign Subject</a>
+                <h3 class="box-title">Designation List</h3>
+                <a href="{{ route('designation.add') }}" class="btn btn-rounded btn-info float-right">Designation Class</a>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -22,22 +22,20 @@
                       <thead>
                           <tr>
                               <th>#</th>
-                              <th>Class Name</th>
+                              <th>Designation</th>
                               <th>Aciton</th>
                           </tr>
                       </thead>
                       <tbody>
-
-                        @foreach($assign_sub as $key => $item)
+                          
+                        @foreach($designation as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item['StudentClass']['name'] }}</td>
+                            <td>{{ $item -> name }}</td>
                             <td>
-                                <a href="{{ route('assign.subject.edit', $item -> class_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
-
-                                <a id="delete" href="{{ route('assign.subject.delete', $item -> class_id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
-
-                                <a href="{{ route('assign.subject.details', $item -> class_id) }}" class="btn btn-info btn-sm" title="Details"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                <a href="{{ route('designation.edit', $item ->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                
+                                <a id="delete" href="{{ route('designation.delete', $item ->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -46,7 +44,7 @@
                       <tfoot>
                           <tr>
                             <th>SL</th>
-                            <th>Class Name</th>
+                            <th>Designation</th>
                             <th>Aciton</th>
                           </tr>
                       </tfoot>

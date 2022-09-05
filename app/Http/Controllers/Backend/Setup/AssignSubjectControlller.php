@@ -127,17 +127,36 @@ class AssignSubjectControlller extends Controller
     }
 
 
-        // fee category amount Details
-        public function AssignSubjectDetails($class_id){
+    // fee category amount Details
+    public function AssignSubjectDetails($class_id){
 
-            $assign_sub = AssignSubject::where('class_id', $class_id) -> orderBy('class_id', 'ASC') -> get();
-    
-            return view('backend.setup.assign_subject.assign_subject_details', [
-                'assign_sub'            => $assign_sub
-            ]);
-    
-        }
-    
+        $assign_sub = AssignSubject::where('class_id', $class_id) -> orderBy('class_id', 'ASC') -> get();
+
+        return view('backend.setup.assign_subject.assign_subject_details', [
+            'assign_sub'            => $assign_sub
+        ]);
+
+    }
+
+    // student class delete page show
+    public function AssignSubjectDelete($class_id){
+
+        // delete
+        $delete = AssignSubject::where('class_id', $class_id);
+        $delete -> delete();
+
+        // msg
+        $notify = [
+            'message'       => "Student Assign Subject Deleted Succefully",
+            'alert-type'    => "info"
+        ];
+        
+        return redirect() -> back() -> with($notify);
+
+
+    }
+        
+
     
    
 }

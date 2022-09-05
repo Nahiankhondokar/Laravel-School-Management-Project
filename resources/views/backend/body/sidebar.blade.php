@@ -77,6 +77,7 @@
             <li class="{{ ($route == 'subject.view') ? 'active' : '' }}"><a href="{{ route('subject.view') }}"><i class="ti-more"></i>School Subject</a></li>
             
             <li class="{{ ($route == 'assign.subject.view') ? 'active' : '' }}"><a href="{{ route('assign.subject.view') }}"><i class="ti-more"></i>Assign Subject</a></li>
+            <li class="{{ ($route == 'designation.view') ? 'active' : '' }}"><a href="{{ route('designation.view') }}"><i class="ti-more"></i>Designation</a></li>
 
           </ul>
           
