@@ -93,11 +93,14 @@ class FeeAmountController extends Controller
             return redirect() -> back() -> with($notify);
 
         }else {
-            // class store
+            // class counting
             $class_count = count($request -> class);
             if($class_count != NULL){
+                // all data delete
                 FeeCategoryAmount::where('fee_category_id', $fee_category_id) -> delete();
                 for ($i=0; $i < $class_count; $i++) { 
+
+                    // again data create
                     FeeCategoryAmount::create([
                         'fee_category_id'           => $request -> fee_category,
                         'class_id'                  => $request -> class[$i],

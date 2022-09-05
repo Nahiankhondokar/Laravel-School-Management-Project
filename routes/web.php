@@ -170,16 +170,16 @@ Route::group(['prefix' => 'setup'], function(){
     // student Assign Subject rouets
     Route::get('/assign/subject/view', [AssignSubjectControlller::class, "AssignSubjectView"]) -> name('assign.subject.view'); 
 
-    Route::get('/assign/subjectt/add', [AssignSubjectControlller::class, "FeeAmountAdd"]) -> name('assign.subject.add');  
+    Route::get('/assign/subject/add', [AssignSubjectControlller::class, "AssignSubjectAdd"]) -> name('assign.subject.add');  
 
-    Route::post('/assign/subject/store', [AssignSubjectControlller::class, "FeeAmountStore"]) -> name('assign.subject.store'); 
-    Route::get('/assign/subject/edit/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountEdit"]) -> name('assign.subject.edit'); 
+    Route::post('/assign/subject/store', [AssignSubjectControlller::class, "AssignSubjectStore"]) -> name('assign.subject.store'); 
+    Route::get('/assign/subject/edit/{class_id}', [AssignSubjectControlller::class, "AssignSubjectEdit"]) -> name('assign.subject.edit'); 
     
-    Route::post('/assign/subject/update/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountUpdate"]) -> name('assign.subject.update');  
+    Route::post('/assign/subject/update/{class_id}', [AssignSubjectControlller::class, "AssignSubjectUpdate"]) -> name('assign.subject.update');  
 
-    Route::get('/assign/subject/details/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDetails"]) -> name('assign.subject.details'); 
+    // Route::get('/assign/subject/details/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDetails"]) -> name('assign.subject.details'); 
 
-    Route::get('/assign/subject/delete/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDelete"]) -> name('assign.subject.delete');
+    // Route::get('/assign/subject/delete/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDelete"]) -> name('assign.subject.delete');
 
 
 });

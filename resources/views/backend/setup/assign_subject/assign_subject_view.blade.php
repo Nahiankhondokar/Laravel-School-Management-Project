@@ -31,13 +31,13 @@
                         @foreach($assign_sub as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item -> class_id }}</td>
+                            <td>{{ $item['StudentClass']['name'] }}</td>
                             <td>
-                                <a href="{{ route('fee.amount.edit', $item -> id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                <a href="{{ route('assign.subject.edit', $item -> class_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
 
-                                <a id="delete" href="{{ route('fee.amount.delete', $item -> id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
+                                <a id="delete" href="" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
 
-                                <a href="{{ route('fee.amount.details', $item -> id) }}" class="btn btn-info btn-sm" title="Details"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                                <a href="" class="btn btn-info btn-sm" title="Details"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                         @endforeach
