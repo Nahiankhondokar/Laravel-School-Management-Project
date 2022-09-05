@@ -2,10 +2,6 @@
 
 @section('admin')
 
-	<!-- jQuery file JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
 <div class="content-wrapper">
     <div class="container-full">
 
@@ -22,7 +18,7 @@
                     <div class="box-body">
                         <div class="row">
                         <div class="col-12">
-                            <form action="{{ route('fee.amount.store', $fee_amount) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                            <form action="{{ route('fee.amount.update', $fee_amount[0] -> fee_category_id) }}" method="POST" autocomplete="off">
                                 @csrf	
                                     
                                 <div class="form-group">
@@ -90,7 +86,7 @@
                                 </div>
 
                                 <div class="text-xs-right text-center">
-                                    <input type="submit" class="btn btn-rounded btn-info" value="Submit">
+                                    <input type="submit" class="btn btn-rounded btn-info" value="Update">
                                 </div>
                                 
                             </form>
@@ -155,20 +151,6 @@
         </div>
     </div>
 </div>
-
-{{-- // edit page remove event --}}
-<script type="text/javascript">
-
-    (function($){
-        $(document).ready(function(){
-            $('.removeEvent').click(function(e){
-                e.preventDefault();
-                $(this).closest('.delete_whole_extra_item_add').remove();
-            });
-        });
-    })(jQuery);
-   
-</script>
 
 
 @endsection

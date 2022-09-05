@@ -64,6 +64,13 @@
       });
 
       
+      $('.removeEvent').click(function(e){
+        e.preventDefault();
+        $(this).closest('.delete_whole_extra_item_add').remove();
+      });
+
+
+      
   });
 })(jQuery);
 

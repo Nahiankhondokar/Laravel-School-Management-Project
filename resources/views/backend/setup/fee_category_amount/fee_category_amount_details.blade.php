@@ -12,33 +12,28 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Student Fee Category Amount List</h3>
-                <a href="{{ route('fee.amount.add') }}" class="btn btn-rounded btn-info float-right">Add Fee Amount</a>
+                <h3 class="box-title">Student Fee Category Amount Details</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                   <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
+                    <table class="table table-bordered table-striped">
+                      <thead class="thead-light">
                           <tr>
                               <th>#</th>
-                              <th>Fee Category</th>
-                              <th>Aciton</th>
+                              <th>Class Name</th>
+                              <th>Amount</th>
                           </tr>
                       </thead>
+                      <h4>Fee Category : <strong>{{ $fee_amount[0] -> FeeCategory -> name }}</strong></h4>
+                
                       <tbody>
 
-                        @foreach($student as $key => $item)
+                        @foreach($fee_amount as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item -> FeeCategory -> name }}</td>
-                            <td>
-                                <a href="{{ route('fee.amount.edit', $item -> fee_category_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
-
-                                <a id="delete" href="{{ route('fee.amount.delete', $item -> fee_category_id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
-
-                                <a href="{{ route('fee.amount.details', $item -> fee_category_id) }}" class="btn btn-info btn-sm" title="Details"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                            </td>
+                            <td>{{ $item -> StudentClass -> name ?? 'None' }}</td>
+                            <td>{{ $item -> amount}}</td>
                         </tr>
                         @endforeach
                           
@@ -46,8 +41,8 @@
                       <tfoot>
                           <tr>
                             <th>SL</th>
-                            <th>Name</th>
-                            <th>Aciton</th>
+                            <th>Class Name</th>
+                            <th>Amount</th>
                           </tr>
                       </tfoot>
                     </table>
