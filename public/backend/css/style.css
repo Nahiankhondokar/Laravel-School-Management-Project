@@ -102,6 +102,11 @@ html {
     justify-content: space-between;
 }
 
+.row {
+    display: flex;
+    align-items: center !important;
+}
+
 body {
     height: 100%;
 }
