@@ -12,9 +12,9 @@ class AssignSubject extends Model
     
     protected $guarded = [];
 
-    // Relation ship for fee category amount name
-    public function FeeCategory(){
-        return $this -> belongsTo(FeeCategory::class, 'fee_category_id', 'id');
+    // Relation ship for subject name
+    public function SchoolSubject(){
+        return $this -> belongsTo(SchoolSubject::class, 'subject_id', 'id');
     }
 
 

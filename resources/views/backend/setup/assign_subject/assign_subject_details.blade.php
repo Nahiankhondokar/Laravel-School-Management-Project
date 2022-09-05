@@ -12,33 +12,32 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Assign Subject List</h3>
-                <a href="{{ route('assign.subject.add') }}" class="btn btn-rounded btn-info float-right">Add Assign Subject</a>
+                <h3 class="box-title">Student Assign Subject Details</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                   <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
+                    <table class="table table-bordered table-striped">
+                      <thead class="thead-light">
                           <tr>
                               <th>#</th>
-                              <th>Class Name</th>
-                              <th>Aciton</th>
+                              <th>Subject Name</th>
+                              <th>Full Mark</th>
+                            <th>Pass Mark</th>
+                            <th>Subjective Mark</th>
                           </tr>
                       </thead>
+                      <h4>Fee Category : <strong>{{ $assign_sub[0] -> StudentClass -> name }}</strong></h4>
+                
                       <tbody>
 
                         @foreach($assign_sub as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item['StudentClass']['name'] }}</td>
-                            <td>
-                                <a href="{{ route('assign.subject.edit', $item -> class_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
-
-                                <a id="delete" href="" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
-
-                                <a href="{{ route('assign.subject.details', $item -> class_id) }}" class="btn btn-info btn-sm" title="Details"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                            </td>
+                            <td>{{ $item -> SchoolSubject -> name ?? 'None' }}</td>
+                            <td>{{ $item -> full_mark}}</td>
+                            <td>{{ $item -> pass_mark}}</td>
+                            <td>{{ $item -> subjective_mark}}</td>
                         </tr>
                         @endforeach
                           
@@ -46,8 +45,10 @@
                       <tfoot>
                           <tr>
                             <th>SL</th>
-                            <th>Class Name</th>
-                            <th>Aciton</th>
+                            <th>Subject Name</th>
+                            <th>Full Mark</th>
+                            <th>Pass Mark</th>
+                            <th>Subjective Mark</th>
                           </tr>
                       </tfoot>
                     </table>

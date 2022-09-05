@@ -177,7 +177,7 @@ Route::group(['prefix' => 'setup'], function(){
     
     Route::post('/assign/subject/update/{class_id}', [AssignSubjectControlller::class, "AssignSubjectUpdate"]) -> name('assign.subject.update');  
 
-    // Route::get('/assign/subject/details/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDetails"]) -> name('assign.subject.details'); 
+    Route::get('/assign/subject/details/{class_id}', [AssignSubjectControlller::class, "AssignSubjectDetails"]) -> name('assign.subject.details'); 
 
     // Route::get('/assign/subject/delete/{fee_category_id}', [AssignSubjectControlller::class, "FeeAmountDelete"]) -> name('assign.subject.delete');
 
