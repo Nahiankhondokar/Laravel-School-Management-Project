@@ -49,9 +49,9 @@
 </div>
 <!-- ./wrapper -->
   	
-<script src="{{asset('backend/js/jquery-3.6.1.min.js')}}"></script>
+	<!-- Jquery JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script src="{{asset('backend/js/custom.js')}}"></script>
 	 
 	<!-- Vendor JS -->
 	<script src="{{ asset('backend/js/vendors.min.js') }}"></script>
@@ -70,6 +70,9 @@
 	<!-- Sunny Admin App -->
 	<script src="{{asset('backend/js/template.js')}}"></script>
 	<script src="{{asset('backend/js/pages/dashboard.js')}}"></script>
+
+  {{-- // custom js file --}}
+  <script src="{{asset('backend/js/custom.js')}}"></script>
 
 
   {{-- Toster js file --}}
