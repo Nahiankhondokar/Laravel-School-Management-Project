@@ -24,16 +24,17 @@
                                 <div class="col-12">	
                                     
                                         <div class="form-group">
-                                            <h5>Select User Type <span class="text-danger">*</span></h5>
+                                            <h5>Select Role <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="user_type" id="select" class="form-control">
+                                                <select name="role" id="select" class="form-control">
                                                     <option value="">Select</option>
-                                                    <option {{ ($user -> user_type == 'admin' ) ? "selected" : '' }} value="admin">Admin</option>
-                                                    <option {{ ($user -> user_type == 'user' ) ? "selected" : '' }} value="user"  >User</option>
+                                                    <option {{ ($user -> role == 'admin' ) ? "selected" : '' }} value="admin">Admin</option>
+                                                    <option {{ ($user -> role == 'user' ) ? "selected" : '' }} value="user"  >User</option>
+                                                    <option {{ ($user -> role == 'operator' ) ? "selected" : '' }} value="operator"  >Operator</option>
                                                 </select>
                                             </div>
-                                                @error('user_type')
-                                                <span class="invalid-feedback" role="alert">
+                                                @error('role')
+                                                <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror

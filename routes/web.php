@@ -202,7 +202,10 @@ Route::group(['prefix' => 'setup'], function(){
 // student management all routes
 Route::group(['prefix' => 'students'], function(){
      
-    Route::get('/view', [StudentRegisterController::class, "ProfileViewPage"]) -> name('student.view');      
+    Route::get('/view', [StudentRegisterController::class, "StudetnRegView"]) -> name('student.view');      
+    Route::get('/registration', [StudentRegisterController::class, "StudetnRegAdd"]) -> name('student.register');   
+
+    Route::post('/store', [StudentRegisterController::class, "StudetnRegStore"]) -> name('student.reg.store');      
 
 });
 

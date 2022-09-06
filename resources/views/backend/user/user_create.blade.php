@@ -24,16 +24,17 @@
                                 <div class="col-12">	
                                     
                                         <div class="form-group">
-                                            <h5>Select User Type <span class="text-danger">*</span></h5>
+                                            <h5>Select Role <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="user_type" id="select" required="" class="form-control">
+                                                <select name="role" id="select" required="" class="form-control">
                                                     <option value="">Select</option>
                                                     <option value="admin">Admin</option>
                                                     <option value="user">User</option>
+                                                    <option value="operator">Operator</option>
                                                 </select>
                                             </div>
-                                                @error('user_type')
-                                                <span class="invalid-feedback" role="alert">
+                                                @error('role')
+                                                <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
@@ -44,7 +45,7 @@
                                         <div class="controls">
                                             <input type="text" name="name" class="form-control" required=""> 
                                             @error('name')
-                                            <span class="invalid-feedback" role="alert">
+                                            <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                             @enderror
@@ -56,7 +57,7 @@
                                         <div class="controls">
                                             <input type="email" name="email" class="form-control" required=""> 
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                                 @enderror
@@ -64,27 +65,15 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5> User Password <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="password" name="password" class="form-control" required=""> 
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
                                         <h5> Photo <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="file" class="form-control" required="" id="inputTag"> 
+                                            <input type="file" name="file" class="form-control" id="inputTag"> 
                                             <br>
                                             <img id="imgPriview" class="card-img-top shadow" src="{{ url('media/no_image.jpg') }}" style="width: 100px; height : 100px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
                                             <br>
                                             
                                             @error('file')
-                                                <span class="invalid-feedback" role="alert">
+                                                <span class="text-danger" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror

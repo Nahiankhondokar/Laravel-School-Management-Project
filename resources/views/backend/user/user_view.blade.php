@@ -39,8 +39,10 @@
                       <thead>
                           <tr>
                               <th>#</th>
+                              <th>Role</th>
                               <th>Name</th>
                               <th>Email</th>
+                              <th>Code</th>
                               <th>Photo</th>
                               <th>Aciton</th>
                           </tr>
@@ -50,8 +52,10 @@
                         @foreach($user as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
+                            <td>{{ $item -> role }}</td>
                             <td>{{ $item -> name }}</td>
                             <td>{{ $item -> email }}</td>
+                            <td>{{ $item -> code }}</td>
                             <td>
                                 <img src="{{ ($item -> profile_photo_path) ? url('media/user/' . $item -> profile_photo_path) : url('media/no_image.jpg') }}" alt="" width=" 30">
                             </td>
@@ -66,8 +70,10 @@
                       <tfoot>
                           <tr>
                             <th>SL</th>
+                            <th>Role</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Code</th>
                             <th>Photo</th>
                             <th>Aciton</th>
                           </tr>

@@ -29,10 +29,9 @@ class UserController extends Controller
         $this -> validate($request, [
             'name'      => 'required',
             'email'     => 'required|unique:users',
-            'password'  => 'required',
-            'user_type'  => 'required'
+            'role'      => 'required'
         ], [
-            'user_type.required'    => "User Type is required"
+            'role.required'    => "User Type is required"
         ]);
 
         // img upload 
@@ -42,14 +41,21 @@ class UserController extends Controller
             $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
             $img -> move(public_path('media/user'), $unique);
 
+        }else {
+            $unique = NULL;
         }
+
+        // code generte
+        $code = rand(0000,9999);
 
         // user store
         User::insert([
             'name'            => $request -> name,
             'email'           => $request -> email,
-            'password'        => Hash::make($request -> password),
-            'user_type'       => $request -> user_type,
+            'role'            => $request -> role,
+            'password'        => bcrypt($code),
+            'user_type'       => 'Admin',
+            'code'            => $code,
             'profile_photo_path'=> $unique
         ]);
 
@@ -76,11 +82,12 @@ class UserController extends Controller
     // user update page
     public function UserUpdate($id, Request $request){
 
+        // dd($request -> all());
         // validation
         $this -> validate($request, [
             'name'          => 'required',
-            'email'         => 'required|unique:users',
-            'user_type'     => 'required'
+            'email'         => 'required',
+            'role'          => 'required'
         ]);
 
         // img upload 
@@ -103,7 +110,7 @@ class UserController extends Controller
         $updaet_data = User::find($id);
         $updaet_data -> name                = $request -> name;
         $updaet_data -> email               = $request -> email;
-        $updaet_data -> user_type           = $request -> user_type;
+        $updaet_data -> role                = $request -> role;
         $updaet_data -> profile_photo_path  = $unique;
         $updaet_data -> update();
     

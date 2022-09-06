@@ -28,7 +28,6 @@
 			        <span>Dashboard</span>
           </a>
         </li>  
-		
         @if(Auth::user() -> role == 'admin')
         <li class="treeview {{ ($prefix == '/user') ? 'active' : '' }}">
           <a href="#">
@@ -43,7 +42,7 @@
             <li class="{{ ($route == 'user.add') ? 'active' : '' }}"><a href="{{ route('user.add') }}"><i class="ti-more"></i>Add User</a></li>
           </ul>
         </li> 
-		    @endif
+        @endif
         <li class="treeview {{ ($prefix == '/profile') ? 'active' : '' }}">
           <a href="#">
             <i data-feather="mail"></i> <span>Manage Profile</span>
@@ -71,14 +70,16 @@
             <li class="{{ ($route == 'student.group.view') ? 'active' : '' }}"><a href="{{ route('student.group.view') }}"><i class="ti-more"></i>Student Group</a></li>
             <li class="{{ ($route == 'student.shift.view') ? 'active' : '' }}"><a href="{{ route('student.shift.view') }}"><i class="ti-more"></i>Student Shift</a></li>
 
+            <li class="{{ ($route == 'assign.subject.view') ? 'active' : '' }}"><a href="{{ route('assign.subject.view') }}"><i class="ti-more"></i>Assign Subject</a></li>
+            <li class="{{ ($route == 'designation.view') ? 'active' : '' }}"><a href="{{ route('designation.view') }}"><i class="ti-more"></i>Designation</a></li>
+
             <li class="{{ ($route == 'fee.cat.view') ? 'active' : '' }}"><a href="{{ route('fee.cat.view') }}"><i class="ti-more"></i>Fee Category</a></li>
             <li class="{{ ($route == 'fee.amount.view') ? 'active' : '' }}"><a href="{{ route('fee.amount.view') }}"><i class="ti-more"></i>Fee Category Amount</a></li>
 
             <li class="{{ ($route == 'exam.type.view') ? 'active' : '' }}"><a href="{{ route('exam.type.view') }}"><i class="ti-more"></i>Exam Type</a></li>
             <li class="{{ ($route == 'subject.view') ? 'active' : '' }}"><a href="{{ route('subject.view') }}"><i class="ti-more"></i>School Subject</a></li>
             
-            <li class="{{ ($route == 'assign.subject.view') ? 'active' : '' }}"><a href="{{ route('assign.subject.view') }}"><i class="ti-more"></i>Assign Subject</a></li>
-            <li class="{{ ($route == 'designation.view') ? 'active' : '' }}"><a href="{{ route('designation.view') }}"><i class="ti-more"></i>Designation</a></li>
+            
 
           </ul>
           
