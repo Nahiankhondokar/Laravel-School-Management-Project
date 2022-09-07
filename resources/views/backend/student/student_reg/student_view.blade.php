@@ -114,7 +114,7 @@
                             <td>
                                 <a href="{{ route('student.edit', $item -> student_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                 
-                                <a id="delete" href="" class="btn btn-danger btn-sm" id="delete"><i class="fa fa-remove" aria-hidden="true"></i></a>
+                                <a href="{{ route('student.promotion', $item -> student_id) }}" class="btn btn-primary btn-sm">Promotion</a>
                             </td>
                         </tr>
                         @endforeach
