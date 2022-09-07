@@ -137,4 +137,101 @@ class StudentRegisterController extends Controller
 
     }
     
+
+    // student search by year or class wise 
+    public function StudetntSearchYearClassWise (Request $request) {
+
+        $data['year'] = StudentYear::all();
+        $data['class'] = StudentClass::all();
+
+        $data['student'] = AssignStudent::where('year_id', $request -> year) -> where('class_id', $request -> class) -> get();
+
+        return view('backend.student.student_reg.student_view', $data);
+
+
+    }
+
+
+    // student edit page load 
+    public function StudentEdit($student_id){
+        $year = StudentYear::all();
+        $class = StudentClass::all();
+        $group = StudentGroup::all();
+        $shift = StudentShift::all();
+
+        $student = AssignStudent::where('student_id', $student_id) -> first();
+        $discount = DiscountStudent::where('assign_student_id', $student -> id) -> first();
+        // dd($discount);
+        return view('backend.student.student_reg.student_edit', compact('year', 'class', 'group', 'shift', 'student', 'discount'));
+    }
+
+    // student edit page load 
+    public function StudentUpdate($student_id, Request $request){
+    //   dd($request -> all());
+
+        /**
+         *  Multi Table Data Store
+         */
+        DB::transaction(function() use($request, $student_id){
+
+            // img upload 
+            if($request -> hasFile('file')){
+
+                $img = $request -> file('file');
+                $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
+                $img -> move(public_path('media/student'), $unique);
+
+                // image delete
+                if(file_exists('media/student/' . $request -> old_img)){
+                    unlink('media/student/' . $request -> old_img);
+                }
+
+            }else{ 
+                $unique = $request -> old_img;
+            }
+
+
+            // // user table data store
+            $user = User::where('id', $student_id) -> first();
+            $user -> f_name               = $request -> f_name;
+            $user -> m_name               = $request -> m_name;
+            $user -> address              = $request -> address;
+            $user -> cell                  = $request -> cell;
+            $user -> gender                = $request -> gender;
+            $user -> religion              = $request -> religion;
+            $user -> name                  = $request -> name;
+            $user -> dob                   = date('Y-m-d', strtotime($request -> dob));
+            $user -> user_type             = 'Student';
+            $user -> image                  = $unique;
+            $user -> update();
+
+
+            // assign student table data store
+            $assign_stu = AssignStudent::where('student_id', $student_id) -> first();
+            $assign_stu ->class_id          = $request -> class;
+            $assign_stu ->year_id           = $request -> year;
+            $assign_stu ->group_id          = $request -> group;
+            $assign_stu ->shift_id          = $request -> shift;
+            $assign_stu -> update();
+
+
+
+            // // discount student table data store
+            $discount_stu = DiscountStudent::where('assign_student_id', $assign_stu -> id) -> first();
+            $discount_stu -> fee_category_id    = '1';
+            $discount_stu -> discount           = $request -> discount;
+            $discount_stu -> update();
+            // dd($user -> id);
+        });
+    
+        // msg
+        $notify = [
+            'message'       => "Student Updated Succefully",
+            'alert-type'    => "info"
+        ];
+
+        return redirect() -> route('student.view') -> with($notify);
+    }
+    
+
 }

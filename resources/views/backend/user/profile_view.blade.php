@@ -20,7 +20,7 @@
                   <h5 class="widget-user-desc">{{ $user -> email }}</h5>
                 </div>
                 <div class="widget-user-image">
-                  <img class="rounded-circle" src="{{ ($user -> profile_photo_path) ? url('media/user/' . $user -> profile_photo_path) : url('media/no_image.jpg') }}" alt="User Avatar" style="width: 80px; height : 80px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
+                  <img class="rounded-circle" src="{{ ($user -> image) ? url('media/user/' . $user -> image) : url('media/no_image.jpg') }}" alt="User Avatar" style="width: 80px; height : 80px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
                 </div>
                 <div class="box-footer">
                   <div class="row">

@@ -69,7 +69,7 @@
                                         <div class="controls">
                                             <input type="file" name="file" class="form-control" id="inputTag"> 
                                             <br>
-                                            <img id="imgPriview" class="card-img-top shadow" src="{{ ($user -> profile_photo_path) ? url('media/user/' . $user -> profile_photo_path) : url('media/no_image.jpg') }}" style="width: 100px; height : 100px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
+                                            <img id="imgPriview" class="card-img-top shadow" src="{{ ($user -> image) ? url('media/user/' . $user -> image) : url('media/no_image.jpg') }}" style="width: 100px; height : 100px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
                                             <br>
                                             <input type="hidden" name="old_img" value="{{ $user -> profile_photo_path }}">
                                             

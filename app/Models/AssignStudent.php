@@ -10,4 +10,23 @@ class AssignStudent extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+
+    // Relation ship for year name
+    public function StudentYear(){
+        return $this -> belongsTo(StudentYear::class, 'year_id', 'id');
+    }
+
+    // Relation ship for Class name
+    public function StudentClass(){
+        return $this -> belongsTo(StudentClass::class, 'class_id', 'id');
+    }
+
+    // Relation ship for student id or name
+    public function Student(){
+        return $this -> belongsTo(User::class, 'student_id', 'id');
+    }
+    
+
+
 }
