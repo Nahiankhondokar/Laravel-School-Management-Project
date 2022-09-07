@@ -3,21 +3,31 @@
 namespace App\Http\Controllers\Backend\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignStudent;
+use App\Models\DiscountStudent;
 use App\Models\StudentClass;
 use App\Models\StudentGroup;
 use App\Models\StudentRegister;
 use App\Models\StudentShift;
 use App\Models\StudentYear;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentRegisterController extends Controller
 {
     // user view page
     public function StudetnRegView(){
-        $student = StudentRegister::all();
-        return view('backend.student.student_reg.student_view', [
-            'student'  => $student
-        ]);
+
+        $data['year'] = StudentYear::all();
+        $data['class'] = StudentClass::all();
+        
+        $data['year_id'] = StudentYear::orderBy('id', 'DESC') -> first() -> id;
+        $data['class_id'] = StudentClass::orderBy('id', 'DESC') -> first() -> id;
+
+        $data['student'] = AssignStudent::where('year_id', $data['year_id']) -> where('class_id', $data['class_id']) -> get();
+
+        return view('backend.student.student_reg.student_view', $data);
     }
 
 
@@ -33,51 +43,97 @@ class StudentRegisterController extends Controller
     }
 
 
-    // student add
+    // student store
     public function StudetnRegStore(Request $request) {
 
-        // validation
-        $this -> validate($request, [
-            'name'          => 'required',
-            'email'         => 'required',
-            'user_type'     => 'required'
-        ]);
+    /**
+     *  Multi Table Data Store
+     */
+        DB::transaction(function() use($request){
 
-        // img upload 
-        if($request -> hasFile('file')){
+            $checkYear = StudentYear::find($request -> year) -> name;
+            $student = User::where('user_type', 'Student') -> orderBy('id', 'DESC') -> first();
 
-            $img = $request -> file('file');
-            $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
-            $img -> move(public_path('media/user'), $unique);
-
-            if(file_exists('media/user/' . $request -> old_img)){
-                unlink('media/user/' . $request -> old_img);
+            if( $student == NULL){
+                $studentId = 1;
+                if($studentId < 10){
+                    $id_no = '000' . $studentId;
+                }else if($studentId < 100){
+                    $id_no = '00' . $studentId;
+                }else if($studentId < 1000){
+                    $id_no = '0' . $studentId;
+                }
+            }else {
+                $student = User::where('user_type', 'Student') -> orderBy('id', 'DESC') -> first() -> id;
+                $studentId = $student + 1;
+                if($studentId < 10){
+                    $id_no = '000' . $studentId;
+                }else if($studentId < 100){
+                    $id_no = '00' . $studentId;
+                }else if($studentId < 1000){
+                    $id_no = '0' . $studentId;
+                }
             }
 
 
-        }else {
-            $unique = $request -> old_img;
-        }
+            // img upload 
+            if($request -> hasFile('file')){
 
-        // user store
-        $updaet_data = User::find($id);
-        $updaet_data -> name                = $request -> name;
-        $updaet_data -> email               = $request -> email;
-        $updaet_data -> cell                = $request -> cell;
-        $updaet_data -> address             = $request -> address;
-        $updaet_data -> gender              = $request -> gender;
-        $updaet_data -> user_type           = $request -> user_type;
-        $updaet_data -> profile_photo_path  = $unique;
-        $updaet_data -> update();
-    
+                $img = $request -> file('file');
+                $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
+                $img -> move(public_path('media/student'), $unique);
+
+            }
+
+
+            // user table data store
+            $code = rand(0000,9999);
+            $user = new User();
+            $user -> id_no                = $checkYear . $id_no;
+            $user -> f_name               = $request -> f_name;
+            $user -> m_name               = $request -> m_name;
+            $user -> address              = $request -> address;
+            $user ->cell                  = $request -> cell;
+            $user ->gender                = $request -> gender;
+            $user -> religion              = $request -> religion;
+            $user -> name                  = $request -> name;
+            $user -> dob                   = date('Y-m-d', strtotime($request -> dob));
+            $user -> user_type             = 'Student';
+            $user -> code                  = $code;
+            $user -> password              = bcrypt($code);
+            $user ->  image                = $unique;
+            $user -> save();
+
+
+            // assign student table data store
+            $assign_stu = new AssignStudent();
+            $assign_stu ->student_id        = $user -> id;
+            $assign_stu ->class_id          = $request -> class;
+            $assign_stu ->year_id           = $request -> year;
+            $assign_stu ->group_id          = $request -> group;
+            $assign_stu ->shift_id          = $request -> shift;
+            $assign_stu -> save();
+
+
+
+            // discount student table data store
+            $discount_stu = new DiscountStudent();
+            $discount_stu -> assign_student_id  = $assign_stu -> id;
+            $discount_stu -> fee_category_id    = '1';
+            $discount_stu -> discount           = $request -> discount;
+            $discount_stu -> save();
+
+        });
+       
+
 
         // msg
         $notify = [
-            'message'       => "User Profile Updated Succefully",
+            'message'       => "Student inserted Succefully",
             'alert-type'    => "success"
         ];
 
-        return redirect() -> route('profile.view') -> with($notify);
+        return redirect() -> route('student.view') -> with($notify);
 
     }
     

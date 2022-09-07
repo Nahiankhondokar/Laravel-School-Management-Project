@@ -10,6 +10,67 @@
         <div class="row">
           <div class="col-12">
 
+
+            <div class="box bb-3 border-warning">
+              <div class="box-header">
+              <h4 class="box-title"><strong>Student Search</strong></h4>
+              </div>
+    
+              <div class="box-body">
+                <form action="">
+                  <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h5>Year<span class="text-danger"></span></h5>
+                            <div class="controls">
+                                <select name="year" id="" class="form-control">
+                                    <option value="">Select</option>
+                                    @foreach($year as $item)
+                                    <option value="{{ $item -> id }}">{{ $item -> name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('religion')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h5>Class<span class="text-danger"></span></h5>
+                            <div class="controls">
+                                <select name="class" id="" class="form-control">
+                                    <option value="">Select</option>
+                                    @foreach($class as $item)
+                                    <option value="{{ $item -> id }}">{{ $item -> name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('religion')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="controls">
+                                <input type="submit" value="Search" class="btn btn-round btn-dark btn-sm">
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                
+                </form>
+              </div>
+            </div>
+
+
            <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">Student List</h3>

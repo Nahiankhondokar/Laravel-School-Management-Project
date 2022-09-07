@@ -12,7 +12,7 @@
                     <!-- Basic Forms -->
                     <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title text-center text-center">Student Add</h3></h6>
+                        <h3 class="box-title text-center">Student Add</h3></h6>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -160,7 +160,7 @@
                                         <div class="form-group">
                                             <h5>Year<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="religion" id="" class="form-control">
+                                                <select name="year" id="" class="form-control">
                                                     <option value="">Select</option>
                                                     @foreach($year as $item)
                                                     <option value="{{ $item -> id }}">{{ $item -> name }}</option>
@@ -178,7 +178,7 @@
                                         <div class="form-group">
                                             <h5>Class<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="religion" id="" class="form-control">
+                                                <select name="class" id="" class="form-control">
                                                     <option value="">Select</option>
                                                     @foreach($class as $item)
                                                     <option value="{{ $item -> id }}">{{ $item -> name }}</option>
@@ -196,7 +196,7 @@
                                         <div class="form-group">
                                             <h5>Group<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <select name="religion" id="" class="form-control">
+                                                <select name="group" id="" class="form-control">
                                                     <option value="">Select</option>
                                                     @foreach($group as $item)
                                                     <option value="{{ $item -> id }}">{{ $item -> name }}</option>
