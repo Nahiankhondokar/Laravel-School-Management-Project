@@ -13,6 +13,7 @@ use App\Models\StudentYear;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class StudentRegisterController extends Controller
 {
@@ -322,6 +323,21 @@ class StudentRegisterController extends Controller
         ];
 
         return redirect() -> route('student.view') -> with($notify);
+
+    }
+
+
+
+    // student details
+    public function StudentDetails($student_id){
+
+        $details = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> first();
+
+        // $pdf = PDF::loadView('backend.student.student_reg.student_details_pdf', $student);
+        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        // return $pdf->stream('document.pdf');
+
+        return view('backend.student.student_reg.student_details_pdf', compact('details'));
 
     }
 

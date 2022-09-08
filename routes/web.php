@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\Setup\StudentGroupController;
 use App\Http\Controllers\Backend\Setup\StudentShiftController;
 use App\Http\Controllers\Backend\Setup\StudentYearController;
 use App\Http\Controllers\Backend\Student\StudentRegisterController;
+use App\Http\Controllers\Backend\Student\StudentRoleController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -202,6 +203,7 @@ Route::group(['prefix' => 'setup'], function(){
 // student management all routes
 Route::group(['prefix' => 'students'], function(){
      
+    // student registration routes
     Route::get('/view', [StudentRegisterController::class, "StudetnRegView"]) -> name('student.view');      
     Route::get('/registration', [StudentRegisterController::class, "StudetnRegAdd"]) -> name('student.register');   
 
@@ -212,7 +214,19 @@ Route::group(['prefix' => 'students'], function(){
     Route::post('/update/{student_id}', [StudentRegisterController::class, "StudentUpdate"]) -> name('student.update');     
 
     Route::get('/promotion/{student_id}', [StudentRegisterController::class, "StudentPromotion"]) -> name('student.promotion');      
-    Route::post('/promotion/update/{student_id}', [StudentRegisterController::class, "StudentPromotionUpdate"]) -> name('student.promotion.update');      
+    Route::post('/promotion/update/{student_id}', [StudentRegisterController::class, "StudentPromotionUpdate"]) -> name('student.promotion.update');  
 
+    Route::get('/details/{student_id}', [StudentRegisterController::class, "StudentDetails"]) -> name('student.details');   
+
+
+    // student role routes   
+    Route::get('/roll/generate', [StudentRoleController::class, "StudetnRoleView"]) -> name('student.role.view'); 
+    Route::get('/roll/getstudent', [StudentRoleController::class, "GetStudents"]) -> name('role.registered.students'); 
+
+    Route::post('/roll/generate', [StudentRoleController::class, "StudentRollGenerate"]) -> name('student.roll.generate'); 
+
+
+
+    
 });
 

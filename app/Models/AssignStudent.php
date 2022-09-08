@@ -23,10 +23,27 @@ class AssignStudent extends Model
     }
 
     // Relation ship for student id or name
+    public function StudentGroup(){
+        return $this -> belongsTo(StudentGroup::class, 'group_id', 'id');
+    }
+        
+
+    // Relation ship for student id or name
+    public function StudentShift(){
+        return $this -> belongsTo(StudentShift::class, 'shift_id', 'id');
+    }
+
+    // Relation ship for student id or name
     public function Student(){
         return $this -> belongsTo(User::class, 'student_id', 'id');
     }
     
+
+    // Relation ship for student id or name
+    public function StudentDiscount(){
+        return $this -> belongsTo(DiscountStudent::class, 'id', 'assign_student_id');
+    }
+        
 
 
 }

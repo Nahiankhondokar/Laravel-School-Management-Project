@@ -112,9 +112,12 @@
                               <img id="imgPriview" class="card-img-top shadow" src="{{ ($item -> Student -> image) ? url('media/student/' . $item -> Student -> image) : url('media/no_image.jpg') }}" style="width: 50px; height : 50px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
                             </td>
                             <td>
-                                <a href="{{ route('student.edit', $item -> student_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                <a title="Edit" href="{{ route('student.edit', $item -> student_id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                 
-                                <a href="{{ route('student.promotion', $item -> student_id) }}" class="btn btn-primary btn-sm">Promotion</a>
+                                <a title="Promotion" href="{{ route('student.promotion', $item -> student_id) }}" class="btn btn-primary btn-sm"><i class="fa fa-check" aria-hidden="true"></i></a>
+
+                                <a title="PDF" target="_blank" href="{{ route('student.details', $item -> student_id) }}" class="btn btn-info btn-sm"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                                
                             </td>
                         </tr>
                         @endforeach
