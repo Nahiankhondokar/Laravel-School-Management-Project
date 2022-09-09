@@ -9,6 +9,8 @@ use App\Models\StudentClass;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
 
+use PDF;
+
 class RegistrationFeeController extends Controller
 {
     // ragistration fee view page 
@@ -69,7 +71,18 @@ class RegistrationFeeController extends Controller
 
 
     // pdf Play slip
-    public function RegFeePayslip(){
+    public function RegFeePayslip(Request $request){
+
+        $student_id = $request -> student_id;
+        $class_id = $request -> class_id;
+
+        $details = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> where('class_id', $class_id) -> first();
+
+        // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
+        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        // return $pdf->stream('document.pdf');
+
+        return view('backend.student.registration_fee.registration_fee_pdf', compact('details'));
         
     }
 
