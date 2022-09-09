@@ -104,7 +104,7 @@ h2, p{
             <tr>
                 <td>14</td>
                 <td>Total Fee (after discount)</td>
-                <td>{{ $finalfee }} </td>
+                <td>{{ $finalfee }} $</td>
             </tr>
         </table>
         <br>
@@ -162,7 +162,7 @@ h2, p{
             <tr>
                 <td>14</td>
                 <td>Total Fee (after discount)</td>
-                <td>{{ $finalfee }} </td>
+                <td>{{ $finalfee }} $</td>
             </tr>
         </table>
         <br>
