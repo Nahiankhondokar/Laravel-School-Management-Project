@@ -52,6 +52,9 @@
 	<!-- Jquery JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+  	<!-- Handlebars File -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+
 	 
 	<!-- Vendor JS -->
 	<script src="{{ asset('backend/js/vendors.min.js') }}"></script>

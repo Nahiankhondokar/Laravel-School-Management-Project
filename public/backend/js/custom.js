@@ -70,7 +70,9 @@
     });
 
 
-    // student role generate script
+    /**
+     * student roll generate script
+     */
     $(document).on('click', '#roleSearch', function(e){
       e.preventDefault();
 
@@ -114,6 +116,36 @@
 
     });
 
+
+    /**
+     * student roll generate script
+     */
+    $(document).on('click', '#regFeeSearch', function(e){
+      // e.preventDefault();
+
+      let year_id = $('#year').val();
+      let class_id = $('#class').val();
+      
+      // alert(year_id + - + class_id);
+
+      $.ajax({
+        url : "/students/registration/fee/class/data",
+        type : "get",
+        data : {'year' : year_id, 'class' : class_id}, 
+        beforeSend : function(){
+
+        },
+        success : function(data){
+          // alert(data);
+          let source = $('#document_template').html();
+          let template = Handlebars.compile(source);
+          let html = template(data);
+          $('#DocumentResults').html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+      });
+      
+    });
 
 
 

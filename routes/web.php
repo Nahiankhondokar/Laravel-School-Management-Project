@@ -229,6 +229,9 @@ Route::group(['prefix' => 'students'], function(){
 
     // Registration Fee routes
     Route::get('/registration/fee', [RegistrationFeeController::class, "RegFeeView"]) -> name('reg.fee.view'); 
+    Route::get('/registration/fee/class/data', [RegistrationFeeController::class, "RegFeeClassData"]) -> name('student.reg.fee.classWise.get'); 
+
+    Route::get('/registration/fee/payslip', [RegistrationFeeController::class, "RegFeePayslip"]) -> name('student.registration.fee.payslip'); 
 
 
 
