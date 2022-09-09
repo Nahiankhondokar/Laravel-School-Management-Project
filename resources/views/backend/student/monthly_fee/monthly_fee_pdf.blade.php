@@ -37,7 +37,7 @@ h2, p{
 
 
     @php
-        $registrationfee = App\Models\FeeCategoryAmount::where('fee_category_id','2')->where('class_id',$details->class_id)->first();
+        $registrationfee = App\Models\FeeCategoryAmount::where('fee_category_id','4')->where('class_id',$details->class_id)->first();
 
 
         $originalfee = $registrationfee->amount;
@@ -49,11 +49,12 @@ h2, p{
 
 <div class="card">
     <div class="card-header">
-      <?php $image_path = '/media/logo.png'; ?>
-      <img src="{{ public_path() . $image_path }}" width="50">
+        <?php $image_path = '/media/logo.png'; ?>
+        <img src="{{ public_path() . $image_path }}" width="50">
       <h2>School ERP Management</h2>
       <p>Phone : <strong>01308663002</strong></p>
       <p>Email : <strong>info.nahian13@gmail.com</strong></p>
+      <p><strong>Student Monthly Fee</strong></p>
     </div>
     <br>
     <div class="card-body">
@@ -105,7 +106,7 @@ h2, p{
             </tr>
             <tr>
                 <td>14</td>
-                <td>Total Fee (after discount)</td>
+                <td>Monthly Total Fee ({{ $month }})</td>
                 <td>{{ $finalfee }} $</td>
             </tr>
         </table>
@@ -163,7 +164,7 @@ h2, p{
             </tr>
             <tr>
                 <td>14</td>
-                <td>Total Fee (after discount)</td>
+                <td>Monthly Total Fee ({{ $month }})</td>
                 <td>{{ $finalfee }} $</td>
             </tr>
         </table>

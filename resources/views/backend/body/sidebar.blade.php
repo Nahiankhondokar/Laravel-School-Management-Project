@@ -97,6 +97,7 @@
             <li class="{{ ($route == 'student.role.view') ? 'active' : '' }}"><a href="{{ route('student.role.view') }}"><i class="ti-more"></i>Student Roll Generate</a></li>
 
             <li class="{{ ($route == 'reg.fee.view') ? 'active' : '' }}"><a href="{{ route('reg.fee.view') }}"><i class="ti-more"></i>Registration Fee</a></li>
+            <li class="{{ ($route == 'monthly.fee.view') ? 'active' : '' }}"><a href="{{ route('monthly.fee.view') }}"><i class="ti-more"></i>Monthly Fee</a></li>
 
 
           </ul>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\Setup\StudentClassController;
 use App\Http\Controllers\Backend\Setup\StudentGroupController;
 use App\Http\Controllers\Backend\Setup\StudentShiftController;
 use App\Http\Controllers\Backend\Setup\StudentYearController;
+use App\Http\Controllers\Backend\Student\MonthlyFeeControlller;
 use App\Http\Controllers\Backend\Student\RegistrationFeeController;
 use App\Http\Controllers\Backend\Student\StudentRegisterController;
 use App\Http\Controllers\Backend\Student\StudentRoleController;
@@ -232,6 +233,14 @@ Route::group(['prefix' => 'students'], function(){
     Route::get('/registration/fee/class/data', [RegistrationFeeController::class, "RegFeeClassData"]) -> name('student.reg.fee.classWise.get'); 
 
     Route::get('/registration/fee/payslip', [RegistrationFeeController::class, "RegFeePayslip"]) -> name('student.registration.fee.payslip'); 
+
+    // Monthly Fee routes
+    Route::get('/monthly/fee', [MonthlyFeeControlller::class, "MonthlyFeeView"]) -> name('monthly.fee.view'); 
+    Route::get('/monthly/fee/class/data', [MonthlyFeeControlller::class, "MonthlyFeeClassData"]) -> name('student.monthly.fee.classWise.get'); 
+
+    Route::get('/monthly/fee/payslip', [MonthlyFeeControlller::class, "MonthlyFeePayslip"]) -> name('student.monthly.fee.payslip'); 
+    
+    
 
 
 
