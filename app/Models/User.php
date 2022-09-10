@@ -58,4 +58,11 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+
+    // Relation ship for designation name
+    public function Designation(){
+        return $this -> belongsTo(Designation::class, 'designation_id', 'id');
+    }
 }
