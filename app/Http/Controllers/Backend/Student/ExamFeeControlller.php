@@ -4,23 +4,26 @@ namespace App\Http\Controllers\Backend\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssignStudent;
+use App\Models\ExamType;
 use App\Models\FeeCategoryAmount;
 use App\Models\StudentClass;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
 
-class MonthlyFeeControlller extends Controller
+class ExamFeeControlller extends Controller
 {
-    // monthly fee view page 
-    public function MonthlyFeeView(){
+    // exam fee view page 
+    public function ExamFeeView(){
         $data['year'] = StudentYear::all();
         $data['class'] = StudentClass::all();
+        $data['exam_type'] = ExamType::all();
 
-        return view('backend.student.monthly_fee.monthly_fee_view', $data);
+        return view('backend.student.exam_fee.exam_fee_view', $data);
     }
 
+
     // monthly fee class data
-    public function MonthlyFeeClassData(Request $request){
+    public function ExamFeeClassData(Request $request){
 
         $year_id = $request->year;
         $class_id = $request->class;
@@ -37,14 +40,14 @@ class MonthlyFeeControlller extends Controller
         $html['thsource'] .= '<th>ID No</th>';
         $html['thsource'] .= '<th>Student Name</th>';
         $html['thsource'] .= '<th>Roll No</th>';
-        $html['thsource'] .= '<th>Monthly Fee</th>';
+        $html['thsource'] .= '<th>Exam Type Fee</th>';
         $html['thsource'] .= '<th>Discount </th>';
         $html['thsource'] .= '<th>Student Fee </th>';
         $html['thsource'] .= '<th>Action</th>';
 
 
         foreach ($allStudent as $key => $v) {
-            $registrationfee = FeeCategoryAmount::where('fee_category_id','4')->where('class_id',$v->class_id)->first();
+            $registrationfee = FeeCategoryAmount::where('fee_category_id','3')->where('class_id',$v->class_id)->first();
             // dd($v->class_id);
             if($registrationfee == null){
                 $html[$key]['tdsource']  = '<h3 class="text-danger text-center">'. 'Data Not Found !' .'</h3>';
@@ -67,7 +70,7 @@ class MonthlyFeeControlller extends Controller
 
                 $html[$key]['tdsource'] .='<td>'.$finalfee .' $'.'</td>';
                 $html[$key]['tdsource'] .='<td>';
-                $html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" href="'.route("student.monthly.fee.payslip").'?class_id='.$v->class_id.'&student_id='.$v->student_id.'&month='. $request -> month .'">Fee Slip</a>';
+                $html[$key]['tdsource'] .='<a class="btn btn-sm btn-'.$color.'" title="PaySlip" target="_blanks" href="'.route("student.exam.fee.payslip").'?class_id='.$v->class_id.'&student_id='.$v->student_id.'&exam_type='. $request -> exam_type_id .'">Fee Slip</a>';
                 $html[$key]['tdsource'] .= '</td>';
             }
 
@@ -77,21 +80,27 @@ class MonthlyFeeControlller extends Controller
     }
 
 
+
+
     // pdf Pay slip
-    public function MonthlyFeePayslip(Request $request){
+    public function ExamFeePayslip(Request $request){
 
-    $student_id = $request -> student_id;
-    $class_id = $request -> class_id;
-    $month = $request -> month;
-
-    $details = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> where('class_id', $class_id) -> first();
-
-    // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-    // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-    // return $pdf->stream('document.pdf');
-
-    return view('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month'));
+        $student_id = $request -> student_id;
+        $class_id = $request -> class_id;
+        $data['exam_type_name'] = ExamType::where('id', $request -> exam_type) -> first() -> name;
+        // dd( $exam_type_name -> name );
     
+        $data['details'] = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> where('class_id', $class_id) -> first();
+    
+        // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
+        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        // return $pdf->stream('document.pdf');
+    
+        return view('backend.student.exam_fee.exam_fee_pdf', $data);
+        
     }
-    
+
+
+
+
 }

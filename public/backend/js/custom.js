@@ -178,8 +178,43 @@
       });
       
     });
-    
 
+
+
+
+
+    /**
+   * student exam fee script
+   */
+     $(document).on('click', '#examFeeSearch', function(e){
+      // e.preventDefault();
+
+      let year_id = $('#year').val();
+      let class_id = $('#class').val();
+      let exam_type_id = $('#exam_type_id').val();
+      
+      // alert(year_id + - + class_id);
+
+      $.ajax({
+        url : "/students/exam/fee/class/data",
+        type : "get",
+        data : {'year' : year_id, 'class' : class_id, 'exam_type_id': exam_type_id}, 
+        beforeSend : function(){
+
+        },
+        success : function(data){
+          // alert(data);
+          let source = $('#document_template').html();
+          let template = Handlebars.compile(source);
+          let html = template(data);
+          $('#DocumentResults').html(html);
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+      });
+      
+    });
+    
+    
 
 
       
