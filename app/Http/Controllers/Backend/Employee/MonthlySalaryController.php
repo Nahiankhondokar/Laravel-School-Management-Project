@@ -11,7 +11,7 @@ class MonthlySalaryController extends Controller
     // employee monthly salaray view page
     public function MonthlySalaryView(){
 
-        return view('backend.employee.employee_salary.employee_salary_view');
+        return view('backend.employee.employee_salery.employee_salary_view');
 
     }
 
@@ -40,7 +40,7 @@ class MonthlySalaryController extends Controller
             $t_body .= '<td>'.$v['Student']['name'].'</td>';
             $t_body .= '<td>'.$v['Student']['salary'].'</td>';
             $t_body .= '<td>'. round($totalSalary) .'</td>';
-            $t_body .= '<td>'. '<a href="" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>'.'</td>';
+            $t_body .= '<td>'. '<a title="PDF" target="_blank" href="'. route("employee.monthly.salary.pdf", $v -> employee_id).'" class="btn btn-primary btn-sm">Pay Slipe</a>'.'</td>';
             $t_body .= '</tr>';
 
         }
@@ -50,4 +50,29 @@ class MonthlySalaryController extends Controller
 
     }
     
+
+
+
+     // pdf Pay slip
+     public function MonthlySalaryPayslip(Request $request, $employee_id){
+
+        // get data from group data id
+        $employee = EmployeeAttendance::where('employee_id', $employee_id) -> first();
+
+        $date = date('Y-m', strtotime($employee -> date));
+
+        $details = EmployeeAttendance::with(['Student']) -> where('date', 'like', $date.'%') -> where('employee_id', $employee_id) -> get();
+
+        // dd($details);
+    
+        // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
+        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+        // return $pdf->stream('document.pdf');
+    
+        return view('backend.employee.employee_salery.employee_salary_pdf', compact('details'));
+        
+    }
+
+
+
 }

@@ -313,10 +313,12 @@ Route::group(['middleware' => 'auth'], function(){
         
         // employee monthly salary all routes
         Route::get('/monthly/salary/view', [MonthlySalaryController::class, "MonthlySalaryView"]) -> name('employee.monthly.salary'); 
-
+        
         Route::get('/monthly/salary/get', [MonthlySalaryController::class, "MonthlySalaryGet"]); 
 
-
+        Route::get('/monthly/salary/pdf/{employee_id}', [MonthlySalaryController::class, "MonthlySalaryPayslip"]) -> name('employee.monthly.salary.pdf'); 
+        
+        
 
     });
 
