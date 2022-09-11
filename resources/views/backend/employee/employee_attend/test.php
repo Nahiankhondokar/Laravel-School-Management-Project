@@ -12,7 +12,7 @@
                     <!-- Basic Forms -->
                     <div class="box">
                     <div class="box-header with-border text-center">
-                        <h3 class="box-title ">Emloyee Attendance Create</h3></h6>
+                        <h3 class="box-title ">Emloyee Leave Create</h3></h6>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

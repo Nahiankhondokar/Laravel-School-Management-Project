@@ -23,10 +23,7 @@
                       <thead>
                           <tr>
                               <th>#</th>
-                              <th> Name</th>
-                              <th> Id No</th>
                               <th>Date</th>
-                              <th>Attend Status</th>
                               <th>Aciton</th>
                           </tr>
                       </thead>
@@ -35,15 +32,12 @@
                         @foreach($attend as $key => $item)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-                            <td>{{ $item -> Student -> name }}</td>
-                            <td>{{ $item -> Student -> id_no }}</td>
                             <td>{{ date('d-m-Y', strtotime($item -> date)) }}</td>
-                            <td>{{ $item -> atten_status }}</td>
                             
                             <td>
-                                <a title="Edit" href="{{ route('employee.leave.edit', $item -> id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                <a title="Edit" href="{{ route('employee.attend.edit', $item -> date) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
 
-                                <a title="Delete" id="delete" href="{{ route('employee.leave.delete', $item -> id) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash aria-hidden="true"></i></a>
+                                <a title="Details" href="" class="btn btn-danger btn-sm"><i class="fa fa-arrow-right aria-hidden="true"></i></a>
                                 
                             </td>
                         </tr>

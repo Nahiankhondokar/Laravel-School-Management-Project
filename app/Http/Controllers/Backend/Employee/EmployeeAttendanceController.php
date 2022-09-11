@@ -12,7 +12,7 @@ class EmployeeAttendanceController extends Controller
      // employee view page 
      public function EmployeeAttendView(){
 
-        $data['attend'] = EmployeeAttendance::orderBy('id', 'DESC') -> get();
+        $data['attend'] = EmployeeAttendance::select('date') -> groupBy('date') -> get();
         return view('backend.employee.employee_attend.employee_attend_view', $data);
     }
 
@@ -26,8 +26,11 @@ class EmployeeAttendanceController extends Controller
     }
 
 
-    // employee view page 
-    public function EmployeeAttendStore(Request $request){
+    // employee attendance store or update page 
+    public function EmployeeAttendStore(Request $request, $date){
+
+        // update by delete previous data
+        EmployeeAttendance::where('date', date('Y-m-d', strtotime($date))) -> delete();
 
         $count_employee = count($request -> employee_id);
         // dd($count_employee);
@@ -53,5 +56,15 @@ class EmployeeAttendanceController extends Controller
 
     }
     
+
+    // employee edit page 
+    public function EmployeeAttendEdit($date){
+
+        $data['attend'] = EmployeeAttendance::where('date', $date) -> get();
+        $data['date'] = $date;
+        
+        return view('backend.employee.employee_attend.employee_attend_edit', $data);
+
+    }
 
 }

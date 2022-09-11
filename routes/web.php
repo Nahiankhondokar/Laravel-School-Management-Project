@@ -301,8 +301,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/attend/create', [EmployeeAttendanceController::class, "EmployeeAttendCreate"]) -> name('employee.attend.create'); 
 
         Route::post('/attend/store/', [EmployeeAttendanceController::class, "EmployeeAttendStore"]) -> name('employee.attend.store'); 
-        Route::get('/leave/edit/{id}', [EmployeeLeaveController::class, "EmployeeLeaveEdit"]) -> name('employee.leave.edit');
-        Route::post('/leave/update/{id}', [EmployeeLeaveController::class, "EmployeeLeaveUpdate"]) -> name('employee.leave.update');
+
+        Route::get('/attend/edit/{date}', [EmployeeAttendanceController::class, "EmployeeAttendEdit"]) -> name('employee.attend.edit');
+
+        Route::post('/attend/update/{date}', [EmployeeAttendanceController::class, "EmployeeAttendStore"]) -> name('employee.attend.update');
 
         Route::get('/leave/delete/{id}', [EmployeeLeaveController::class, "EmployeeLeaveDelete"]) -> name('employee.leave.delete');
 

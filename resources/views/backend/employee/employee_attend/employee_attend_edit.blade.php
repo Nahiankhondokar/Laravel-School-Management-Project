@@ -12,13 +12,13 @@
                     <!-- Basic Forms -->
                     <div class="box">
                     <div class="box-header with-border text-center">
-                        <h3 class="box-title ">Emloyee Attendance Create</h3></h6>
+                        <h3 class="box-title ">Emloyee Attendance Edit</h3></h6>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="row">
                         <div class="col-12">
-                            <form action="{{ route('employee.attend.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
+                            <form action="{{ route('employee.attend.update', $date) }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                                 @csrf	
                                     
                                 <div class="row">
@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <h5>Attendance Date<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="date" name="attend_date" class="form-control" > 
+                                                <input type="date" name="attend_date" class="form-control" value="{{ $date }}"> 
                                                 @error('start_date')
                                                 <span class="text-danger">
                                                     <strong>{{ $message }}</strong>
@@ -57,20 +57,20 @@
                                             </thead>
                                             <tbody>
                                                 
-                                              @foreach($employee as $key => $item)
+                                              @foreach($attend as $key => $item)
                                               <tr>
-                                                <input type="hidden" name="employee_id[]" value="{{ $item -> id }}">
+                                                <input type="hidden" name="employee_id[]" value="{{ $item -> employee_id }}">
                                                 <td>{{  $key + 1 }}</td>
-                                                <td>{{ $item -> name }}</td>
+                                                <td>{{ $item -> Student -> name }}</td>
                                                 <td colspan="3">
                                                     <div class="text-center">
-                                                        <input name="attend_status{{$key}}" type="radio" value="Present" checked="" id="present{{$key}}">
+                                                        <input name="attend_status{{$key}}" type="radio" value="Present"  {{ ($item -> atten_status == 'Present') ? 'checked' : '' }} id="present{{$key}}">
                                                         <label for="present{{$key}}">Present</label>
 
-                                                        <input name="attend_status{{$key}}" value="Leave" type="radio" id="leave{{$key}}">
+                                                        <input name="attend_status{{$key}}" value="Leave" type="radio" id="leave{{$key}}" {{ ($item -> atten_status == 'Leave') ? 'checked' : '' }} >
                                                         <label for="leave{{$key}}">Leave</label>
 
-                                                        <input name="attend_status{{$key}}" type="radio" value="Absent" class="with-gap" id="absent{{$key}}">
+                                                        <input name="attend_status{{$key}}" type="radio" value="Absent" class="with-gap" id="absent{{$key}}" {{ ($item -> atten_status == 'Absent') ? 'checked' : '' }} >
                                                         <label for="absent{{$key}}">Absent</label>
                                                     </div>
                                                 </td>
@@ -85,7 +85,7 @@
 
                                
                                 <div class="text-xs-right text-center">
-                                    <input type="submit" class="btn btn-rounded btn-info" value="Submit">
+                                    <input type="submit" class="btn btn-rounded btn-info" value="Update">
                                 </div>
                             </form>
         
