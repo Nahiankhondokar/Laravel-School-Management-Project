@@ -32,6 +32,7 @@ class EmployeeAttendanceController extends Controller
         // update by delete previous data
         EmployeeAttendance::where('date', date('Y-m-d', strtotime($date))) -> delete();
 
+        // attendance store or update
         $count_employee = count($request -> employee_id);
         // dd($count_employee);
         for ($i=0; $i < $count_employee; $i++) { 
@@ -66,5 +67,18 @@ class EmployeeAttendanceController extends Controller
         return view('backend.employee.employee_attend.employee_attend_edit', $data);
 
     }
+
+
+
+    // employee edit page 
+    public function EmployeeAttendDetails($date){
+
+        $data['attend'] = EmployeeAttendance::where('date', $date) -> get();
+        $data['date'] = $date;
+        
+        return view('backend.employee.employee_attend.employee_attend_details', $data);
+
+    }
+
 
 }

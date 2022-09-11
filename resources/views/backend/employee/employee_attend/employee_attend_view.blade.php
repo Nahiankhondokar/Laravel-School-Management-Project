@@ -37,7 +37,7 @@
                             <td>
                                 <a title="Edit" href="{{ route('employee.attend.edit', $item -> date) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit" aria-hidden="true"></i></a>
 
-                                <a title="Details" href="" class="btn btn-danger btn-sm"><i class="fa fa-arrow-right aria-hidden="true"></i></a>
+                                <a title="Details" href="{{ route('employee.attend.details', $item -> date) }}" class="btn btn-danger btn-sm"><i class="fa fa-arrow-right aria-hidden="true"></i></a>
                                 
                             </td>
                         </tr>

@@ -23,6 +23,7 @@ use App\Http\Controllers\Backend\Student\StudentRoleController;
 
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSaleryController;
+use App\Http\Controllers\Backend\Employee\MonthlySalaryController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -306,8 +307,14 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::post('/attend/update/{date}', [EmployeeAttendanceController::class, "EmployeeAttendStore"]) -> name('employee.attend.update');
 
-        Route::get('/leave/delete/{id}', [EmployeeLeaveController::class, "EmployeeLeaveDelete"]) -> name('employee.leave.delete');
+        Route::get('/attend/details/{date}', [EmployeeAttendanceController::class, "EmployeeAttendDetails"]) -> name('employee.attend.details');
 
+
+        
+        // employee monthly salary all routes
+        Route::get('/monthly/salary/view', [MonthlySalaryController::class, "MonthlySalaryView"]) -> name('employee.monthly.salary'); 
+
+        Route::get('/monthly/salary/get', [MonthlySalaryController::class, "MonthlySalaryGet"]); 
 
 
 

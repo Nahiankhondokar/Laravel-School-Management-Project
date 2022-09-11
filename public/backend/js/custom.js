@@ -230,6 +230,33 @@
     
       
     });
+
+    /**
+     *  employee monthly salary
+     */
+    $(document).on('click', '#empy_salary', function(e){
+      e.preventDefault();
+
+      const slry_date = $('#date').val();
+      // alert(slry_date);
+
+      $.ajax({
+        url : '/employee/monthly/salary/get',
+        type : 'get',
+        data : { slry_date : slry_date },
+        beforeSend : function(){
+
+        },
+        success : function(data){
+  
+          // console.log(data);
+          $('#monthly_sly_div').removeClass('d-none')
+          $('#emply_table_body').html(data);
+
+        }
+      });
+
+    });
     
 
 
