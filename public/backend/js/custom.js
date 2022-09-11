@@ -214,6 +214,22 @@
       
     });
     
+
+    /**
+     *  employee leave purpose
+     */
+     $(document).on('click', '#leave_purpose', function(e){
+      // e.preventDefault();
+
+      let new_purpose = $(this).val();
+      if(new_purpose == 0){
+        $('#new_purpose').slideDown();
+      }else {
+        $('#new_purpose').slideUp();
+      }
+    
+      
+    });
     
 
 

@@ -117,6 +117,8 @@
             <li class="{{ ($route == 'employee.reg.view') ? 'active' : '' }}"><a href="{{ route('employee.reg.view') }}"><i class="ti-more"></i>Employee Registration</a></li>
             <li class="{{ ($route == 'employee.salery.view') ? 'active' : '' }}"><a href="{{ route('employee.salery.view') }}"><i class="ti-more"></i>Employee Salery</a></li>
 
+            <li class="{{ ($route == 'employee.leave.view') ? 'active' : '' }}"><a href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee Leave</a></li>
+
 
 
           </ul>
