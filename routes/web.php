@@ -24,6 +24,7 @@ use App\Http\Controllers\Backend\Student\StudentRoleController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSaleryController;
 use App\Http\Controllers\Backend\Employee\MonthlySalaryController;
+use App\Http\Controllers\Backend\Student\StudentMarksController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -319,6 +320,22 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/monthly/salary/pdf/{employee_id}', [MonthlySalaryController::class, "MonthlySalaryPayslip"]) -> name('employee.monthly.salary.pdf'); 
         
         
+
+    });
+
+
+    Route::group(['prefix' => 'marks'], function (){
+
+        Route::get('/student/view', [StudentMarksController::class, 'StudentMakrView']) -> name('student.mark.view');
+        Route::get('/student/subject-load/{class_id}', [StudentMarksController::class, 'StudentSubjectLoad']) -> name('student.subject.load');
+
+        Route::get('/student/getmark', [StudentMarksController::class, 'StudentGetMark']);
+        Route::post('/generate', [StudentMarksController::class, 'StudentMarkGenerate']) -> name('student.mark.generate');
+
+        Route::get('/edit', [StudentMarksController::class, 'StudentMarkEdit']) -> name('student.mark.edit');
+        Route::post('/update', [StudentMarksController::class, 'StudentMarkUpdate']) -> name('student.mark.update');
+
+        Route::get('/edit/getstudent', [StudentMarksController::class, 'MarkEditGetStudent']);
 
     });
 

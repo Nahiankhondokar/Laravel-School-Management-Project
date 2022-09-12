@@ -22,4 +22,13 @@ class AssignSubject extends Model
     public function StudentClass(){
         return $this -> belongsTo(StudentClass::class, 'class_id', 'id');
     }
+
+
+    // Relation ship for student id or name
+    public function Student(){
+        return $this -> belongsTo(User::class, 'student_id', 'id');
+    }
+
+        
+
 }

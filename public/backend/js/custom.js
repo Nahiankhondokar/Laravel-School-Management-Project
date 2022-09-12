@@ -260,6 +260,138 @@
     
 
 
+    /**
+   *  Student mark page
+   *  class select, the subject will be selected automatically
+   */
+  $(document).on('change', '#class_select', function(){
+    
+    let class_id = $(this).val();
+    // alert(class_id);
+
+    $.ajax({
+      url : '/marks/student/subject-load/' + class_id,
+      type : 'get',
+      success : function (data){
+        // alert(data);
+        // console.log(data);
+
+        let html_tag = '';
+        $.each(data, function(key, value){
+          // console.log(value.school_subject.name);
+          html_tag += `
+            <option value="${value.school_subject.id}">${ value.school_subject.name }</option>
+          `;
+        });
+
+        $('#subjec_load').html(html_tag);
+      }
+    });
+
+
+  });
+
+
+
+    /**
+    * student Mark generate script
+    */
+    $(document).on('click', '#markSearch', function(e){
+      e.preventDefault();
+
+      let year_id = $('#year').val();
+      let class_id = $('#class_select').val();
+      let exam_id = $('#exam').val();
+      let subject_id = $('#subjec_load').val();
+      
+      // alert(year_id + - + class_id);
+
+      $.ajax({
+        url : "/marks/student/getmark",
+        type : 'GET',
+        data : { year_id, class_id, exam_id, subject_id}, 
+        success : function(data){
+          // alert(data);
+          // console.log(data);
+
+          $('#stu-mark-generate').removeClass('d-none');
+          let table_body = '';
+
+          $.each(data, function(key, v){
+            // console.log(v.student.name);
+            table_body += `
+                <tr>
+                  <td>${v.student.id_no} <input class="form-control" type="hidden" name="student_id[]"  value="${v.student_id}"></td>
+                  <td>${v.student.name}</td>
+                  <td>${v.student.f_name}</td>
+                  <td>${v.student.gender}</td>
+                  <td>
+                  <input class="form-control" type="text" name="marks[]" placeholder="marks" value="">
+                  <input class="form-control" type="hidden" name="id_no[]" placeholder="marks" value="${v.student.id_no}">
+                  </td>
+                </tr>
+                `;
+          });
+
+
+
+          $('#stu-mark-generate-body').html(table_body);
+
+        }
+      });
+
+    });
+  
+
+
+  /**
+  * student Mark Edit script
+  */
+  $(document).on('click', '#markEditSearch', function(e){
+    e.preventDefault();
+
+    let year_id = $('#year').val();
+    let class_id = $('#class_select').val();
+    let exam_id = $('#exam').val();
+    let subject_id = $('#subjec_load').val();
+    
+    // alert(year_id + - + class_id);
+
+    $.ajax({
+      url : "/marks/edit/getstudent",
+      type : 'GET',
+      data : { year_id, class_id, exam_id, subject_id}, 
+      success : function(data){
+        // alert(data);
+        // console.log(data);
+
+        $('#stu-mark-generate').removeClass('d-none');
+        let table_body = '';
+
+        $.each(data, function(key, v){
+          // console.log(v.student.name);
+          table_body += `
+              <tr>
+                <td>${v.student.id_no} <input class="form-control" type="hidden" name="student_id[]"  value="${v.student_id}"></td>
+                <td>${v.student.name}</td>
+                <td>${v.student.f_name}</td>
+                <td>${v.student.gender}</td>
+                <td>
+                <input class="form-control" type="text" name="marks[]" placeholder="marks" value="${v.marks}">
+                <input class="form-control" type="hidden" name="id_no[]" placeholder="marks" value="${v.student.id_no}">
+                </td>
+              </tr>
+              `;
+        });
+
+        $('#stu-mark-generate-body').html(table_body);
+
+      }
+    });
+
+  });
+
+
       
   });
 })(jQuery);
