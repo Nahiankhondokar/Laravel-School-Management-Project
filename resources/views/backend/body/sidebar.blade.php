@@ -106,7 +106,7 @@
           
         </li>
 	  
-        <li class="treeview {{ ($prefix == '/students') ? 'active' : '' }}">
+        <li class="treeview {{ ($prefix == '/employee') ? 'active' : '' }}">
           <a href="#">
             <i data-feather="mail"></i> <span>Employee Management</span>
             <span class="pull-right-container">
@@ -115,6 +115,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{ ($route == 'employee.reg.view') ? 'active' : '' }}"><a href="{{ route('employee.reg.view') }}"><i class="ti-more"></i>Employee Registration</a></li>
+
             <li class="{{ ($route == 'employee.salery.view') ? 'active' : '' }}"><a href="{{ route('employee.salery.view') }}"><i class="ti-more"></i>Employee Salery</a></li>
 
             <li class="{{ ($route == 'employee.leave.view') ? 'active' : '' }}"><a href="{{ route('employee.leave.view') }}"><i class="ti-more"></i>Employee Leave</a></li>
@@ -140,33 +141,43 @@
             <li class="{{ ($route == 'student.mark.view') ? 'active' : '' }}"><a href="{{ route('student.mark.view') }}"><i class="ti-more"></i>Student Marks</a></li>
             <li class="{{ ($route == 'student.mark.edit') ? 'active' : '' }}"><a href="{{ route('student.mark.edit') }}"><i class="ti-more"></i>Student Marks Edit</a></li>
 
+            <li class="{{ ($route == 'student.grade.view') ? 'active' : '' }}"><a href="{{ route('student.grade.view') }}"><i class="ti-more"></i>Student Grades</a></li>
+
+          </ul>
+          
+        </li>
 
 
+        <li class="treeview {{ ($prefix == '/account') ? 'active' : '' }}">
+          <a href="#">
+            <i data-feather="mail"></i> <span>Account Management</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{ ($route == 'student.fee.view') ? 'active' : '' }}"><a href="{{ route('student.fee.view') }}"><i class="ti-more"></i>Student Fee</a></li>
+            <li class="{{ ($route == 'account.employee.view') ? 'active' : '' }}"><a href="{{ route('account.employee.view') }}"><i class="ti-more"></i>Employee Salary</a></li>
+
+            <li class="{{ ($route == 'other.cost.view') ? 'active' : '' }}"><a href="{{ route('other.cost.view') }}"><i class="ti-more"></i>Other Cost</a></li>
 
           </ul>
           
         </li>
 	  
 		 
-        <li class="header nav-small-cap">User Interface</li>
+        <li class="header nav-small-cap">Report Interface</li>
 		  
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/report') ? 'active' : '' }}">
           <a href="#">
             <i data-feather="grid"></i>
-            <span>Components</span>
+            <span>Report Management</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-            <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-            <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-            <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
-            <li><a href="components_dropdown.html"><i class="ti-more"></i>Dropdown</a></li>
-            <li><a href="components_modals.html"><i class="ti-more"></i>Modal</a></li>
-            <li><a href="components_nestable.html"><i class="ti-more"></i>Nestable</a></li>
-            <li><a href="components_progress_bars.html"><i class="ti-more"></i>Progress Bars</a></li>
+            <li class="{{ ($route == 'report.profit.view') ? 'active' : '' }}"><a href="{{ route('monthly.profit.view') }}"><i class="ti-more"></i>Yearly or Monthly Profit</a></li>
           </ul>
         </li>
           

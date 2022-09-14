@@ -23,7 +23,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <h5>Year<span class="text-danger"></span></h5>
+                                    <h5>Date<span class="text-danger"></span></h5>
                                     <div class="controls">
                                         <input type="date" name="date" class="form-control" id="date"/>
                                     </div>

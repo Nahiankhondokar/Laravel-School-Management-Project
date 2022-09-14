@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\Account\EmployeeAccountController;
+use App\Http\Controllers\Backend\Account\OtherCostController;
 use App\Http\Controllers\Backend\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Backend\Employee\EmployeeLeaveController;
 use App\Http\Controllers\Backend\ProfileController;
+
 use App\Http\Controllers\Backend\Setup\AssignSubjectControlller;
 use App\Http\Controllers\Backend\Setup\DesignationController;
 use App\Http\Controllers\Backend\Setup\ExamTypeController;
@@ -24,7 +27,11 @@ use App\Http\Controllers\Backend\Student\StudentRoleController;
 use App\Http\Controllers\Backend\Employee\EmployeeRegController;
 use App\Http\Controllers\Backend\Employee\EmployeeSaleryController;
 use App\Http\Controllers\Backend\Employee\MonthlySalaryController;
+use App\Http\Controllers\Backend\Student\StudentGradeController;
 use App\Http\Controllers\Backend\Student\StudentMarksController;
+
+use App\Http\Controllers\Backend\Account\StudentFeeController;
+use App\Http\Controllers\Backend\Report\ProfitController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -323,9 +330,10 @@ Route::group(['middleware' => 'auth'], function(){
 
     });
 
-
+    // Student marks all routes
     Route::group(['prefix' => 'marks'], function (){
 
+        // stusent marks all routes
         Route::get('/student/view', [StudentMarksController::class, 'StudentMakrView']) -> name('student.mark.view');
         Route::get('/student/subject-load/{class_id}', [StudentMarksController::class, 'StudentSubjectLoad']) -> name('student.subject.load');
 
@@ -337,6 +345,71 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('/edit/getstudent', [StudentMarksController::class, 'MarkEditGetStudent']);
 
+
+
+        
+        // stusent grade all routes
+        Route::get('/grade/view', [StudentGradeController::class, 'StudentGradeView']) -> name('student.grade.view');
+        Route::get('/grade/add', [StudentGradeController::class, 'StudentGradeAdd']) -> name('student.grade.add');
+
+        Route::post('/grade/store', [StudentGradeController::class, 'StudentGradeStore']) -> name('student.grade.store');
+        Route::get('/grade/edit/{id}', [StudentGradeController::class, 'StudentGradeEdit']) -> name('student.grade.edit');
+
+        Route::post('/grade/update/{id}', [StudentGradeController::class, 'StudentGradeUpdate']) -> name('student.grade.update');
+
+
     });
+
+    // accoutn management all routes
+    Route::group(['prefix' => 'account'], function (){
+
+        // Student payment routes
+        Route::get('/student/fee', [StudentFeeController::class, "StudentFeeView"]) -> name('student.fee.view');
+        Route::get('/student/add', [StudentFeeController::class, "StudentFeeAdd"]) -> name('student.fee.add');
+
+        Route::get('/fee/getstudent', [StudentFeeController::class, "GetStudentAccountFee"]);
+        Route::post('/student/fee/payment', [StudentFeeController::class, "StudentFeePayment"]) -> name('student.account.fee');
+
+
+
+        // employee salary all routes
+        Route::get('/employee/salary', [EmployeeAccountController::class, "EmployeeAccountView"]) -> name('account.employee.view');
+        Route::get('/employee/salary/add', [EmployeeAccountController::class, "EmployeeSalaryAdd"]) -> name('account.employee.add');
+
+        Route::get('/employee/monthly/salary/get', [EmployeeAccountController::class, "MonthlySalaryGet"]);
+
+        Route::post('/employee/monthly/salary/store', [EmployeeAccountController::class, "EmployeeAccountSalaryStore"]) -> name('employee.account.store');
+
+
+
+        // employee salary all routes
+        Route::get('/other/cost/view', [OtherCostController::class, "OtherCostView"]) -> name('other.cost.view');
+        Route::get('/other/cost/add', [OtherCostController::class, "OtherCostAdd"]) -> name('other.cost.add');
+
+        Route::post('/other/cost/add', [OtherCostController::class, "OtherCostStore"]) -> name('other.cost.store');
+        Route::get('/other/cost/edit/{id}', [OtherCostController::class, "OtherCostEdit"]) -> name('other.cost.edit');
+
+        Route::post('/other/cost/update/{id}', [OtherCostController::class, "OtherCostUpdate"]) -> name('other.cost.update');
+        Route::get('/other/cost/delete/{id}', [OtherCostController::class, "OtherCostDelete"]) -> name('other.cost.delete');
+
+
+
+
+    });
+
+    // Report all routes
+    Route::group(['prefix' => 'report'], function (){
+
+        // yearly or monthly report all routes
+        Route::get('/profit/view', [ProfitController::class, "MontlyProfitView"]) -> name('monthly.profit.view');
+
+        Route::get('/profit/pdf', [ProfitController::class, "MontlyProfitPDF"]) -> name('monthly.profit.pdf');
+
+        Route::get('/profit/date-wise/get', [ProfitController::class, "MontlyProfitByDateWise"]);
+
+
+
+    });
+
 
 });

@@ -231,6 +231,8 @@
       
     });
 
+
+
     /**
      *  employee monthly salary
      */
@@ -390,6 +392,99 @@
     });
 
   });
+
+
+
+  /**
+  *  student account fee getStudent script
+  */
+  $(document).on('click', '#StuFeeSearch', function(e){
+    e.preventDefault();
+
+    const year_id = $('#year').val();
+    const class_id = $('#class').val();
+    const fee_cat_id = $('#fee_category').val();
+    const date = $('#date').val();
+    // alert(fee_cat_id);
+
+    $.ajax({
+      url : '/account/fee/getstudent',
+      type : 'get',
+      data : { year_id, class_id, fee_cat_id, date },
+      beforeSend : function(){
+      },
+      success : function(data){
+        // alert(data);
+        // console.log(data);
+        $('#stu-mark-generate').removeClass('d-none')
+        $('#stu-mark-generate-body').html(data);
+
+      }
+    });
+
+  });
+      
+
+
+  
+  /**
+   *  employee monthly salary
+   */
+  $(document).on('click', '#accEplySearch', function(e){
+    e.preventDefault();
+
+    const slry_date = $('#date').val();
+    // alert(slry_date);
+
+    $.ajax({
+      url : '/account/employee/monthly/salary/get',
+      type : 'get',
+      data : { slry_date : slry_date },
+      beforeSend : function(){
+
+      },
+      success : function(data){
+        // alert(data);
+        // console.log(data);
+        $('#monthly_sly_div').removeClass('d-none')
+        $('#emply_table_body').html(data);
+
+      }
+    });
+
+  });
+      
+
+
+  /**
+   *  Report monthly profit script
+   */
+     $(document).on('click', '#profitSearch', function(e){
+      e.preventDefault();
+  
+      const start_date = $('#start_date').val();
+      const end_date = $('#end_date').val();
+      // alert(slry_date);
+  
+      $.ajax({
+        url : '/report/profit/date-wise/get',
+        type : 'get',
+        data : { start_date, end_date },
+        beforeSend : function(){
+  
+        },
+        success : function(data){
+          // alert(data);
+          // // console.log(data);
+          $('#monthly_sly_div').removeClass('d-none')
+          $('#emply_table_body').html(data);
+  
+        }
+      });
+  
+    });
+        
+
 
 
       
