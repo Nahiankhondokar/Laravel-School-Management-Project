@@ -31,6 +31,7 @@ use App\Http\Controllers\Backend\Student\StudentGradeController;
 use App\Http\Controllers\Backend\Student\StudentMarksController;
 
 use App\Http\Controllers\Backend\Account\StudentFeeController;
+use App\Http\Controllers\Backend\Report\MarkSheetController;
 use App\Http\Controllers\Backend\Report\ProfitController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
@@ -406,6 +407,14 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/profit/pdf', [ProfitController::class, "MontlyProfitPDF"]) -> name('monthly.profit.pdf');
 
         Route::get('/profit/date-wise/get', [ProfitController::class, "MontlyProfitByDateWise"]);
+
+
+        
+        // mark sheet all routes
+        Route::get('/marksheet/view', [MarkSheetController::class, "MarkSheetView"]) -> name('marksheet.generate.view');
+        Route::get('/marksheet/get', [MarkSheetController::class, "MarkSheetGet"]) -> name('marksheet.generate.get');
+
+
 
 
 

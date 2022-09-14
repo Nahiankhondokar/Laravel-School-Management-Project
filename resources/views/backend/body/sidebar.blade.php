@@ -178,6 +178,10 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{ ($route == 'report.profit.view') ? 'active' : '' }}"><a href="{{ route('monthly.profit.view') }}"><i class="ti-more"></i>Yearly or Monthly Profit</a></li>
+            <li class="{{ ($route == 'marksheet.generate.view') ? 'active' : '' }}"><a href="{{ route('marksheet.generate.view') }}"><i class="ti-more"></i> MarkSheet Generate </a></li>
+
+
+
           </ul>
         </li>
           
