@@ -180,6 +180,8 @@
             <li class="{{ ($route == 'report.profit.view') ? 'active' : '' }}"><a href="{{ route('monthly.profit.view') }}"><i class="ti-more"></i>Yearly or Monthly Profit</a></li>
             <li class="{{ ($route == 'marksheet.generate.view') ? 'active' : '' }}"><a href="{{ route('marksheet.generate.view') }}"><i class="ti-more"></i> MarkSheet Generate </a></li>
 
+            <li class="{{ ($route == 'attend.report.view') ? 'active' : '' }}"><a href="{{ route('attend.report.view') }}"><i class="ti-more"></i> Attend Report </a></li>
+
 
 
           </ul>

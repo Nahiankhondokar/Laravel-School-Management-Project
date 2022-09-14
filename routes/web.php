@@ -31,6 +31,7 @@ use App\Http\Controllers\Backend\Student\StudentGradeController;
 use App\Http\Controllers\Backend\Student\StudentMarksController;
 
 use App\Http\Controllers\Backend\Account\StudentFeeController;
+use App\Http\Controllers\Backend\Report\AttendReportController;
 use App\Http\Controllers\Backend\Report\MarkSheetController;
 use App\Http\Controllers\Backend\Report\ProfitController;
 use App\Http\Controllers\Backend\UserController;
@@ -413,6 +414,12 @@ Route::group(['middleware' => 'auth'], function(){
         // mark sheet all routes
         Route::get('/marksheet/view', [MarkSheetController::class, "MarkSheetView"]) -> name('marksheet.generate.view');
         Route::get('/marksheet/get', [MarkSheetController::class, "MarkSheetGet"]) -> name('marksheet.generate.get');
+
+
+        // Attend Report all routes
+        Route::get('/employee-attend/view', [AttendReportController::class, "AttendReportView"]) -> name('attend.report.view');
+
+        Route::get('/employee-attend/get', [AttendReportController::class, "AttendReportGet"]) -> name('attend.report.get');
 
 
 
