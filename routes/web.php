@@ -34,6 +34,7 @@ use App\Http\Controllers\Backend\Account\StudentFeeController;
 use App\Http\Controllers\Backend\Report\AttendReportController;
 use App\Http\Controllers\Backend\Report\MarkSheetController;
 use App\Http\Controllers\Backend\Report\ProfitController;
+use App\Http\Controllers\Backend\Report\ResultReportController;
 use App\Http\Controllers\Backend\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -421,6 +422,11 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('/employee-attend/get', [AttendReportController::class, "AttendReportGet"]) -> name('attend.report.get');
 
+
+        // Student Result Report all routes
+        Route::get('/student-result/view', [ResultReportController::class, "ResultReportView"]) -> name('student.result.view');
+
+        Route::get('/student-result/report/get', [ResultReportController::class, "StudentResultReportGet"]) -> name('student.result.report.get');
 
 
 

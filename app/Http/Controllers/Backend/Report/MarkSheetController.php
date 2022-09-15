@@ -33,17 +33,16 @@ class MarkSheetController extends Controller
         if($single_student == true){
         
             $all_marks = StudentMark::with(['Subject', 'StudentYear']) -> where('year_id',      $request -> year) -> where('class_id', $request -> class) -> where('exam_type_id', $request -> exam) -> where('id_no', $request -> id_no) -> get();
-
-            // return count($all_marks);
-            // for ($i=0; $i < count($all_marks); $i++) { 
-            //     $total_point = $all_marks[$i] -> marks;
-            //     dd($total_point);
-            // }
             
 
             $all_grades = StudentGrade::all();
 
+             // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
+            // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+            // return $pdf->stream('document.pdf');
+
             return view('backend.report.mark_sheet.mark_sheet_pdf', compact('all_marks', 'all_grades', 'fail_count'));
+
         }else {
 
              // msg
