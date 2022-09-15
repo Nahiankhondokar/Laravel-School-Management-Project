@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Report;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignStudent;
 use App\Models\ExamType;
 use App\Models\StudentClass;
 use App\Models\StudentMark;
@@ -54,6 +55,49 @@ class ResultReportController extends Controller
         
     }
 
+
+
+    // Student id card
+    public function StudentIdCardView(){
+
+        $data['year'] = StudentYear::orderBy('id', 'DESC') -> get();
+        $data['class'] = StudentClass::orderBy('id', 'DESC') -> get();
+
+        return view('backend.report.student_idcard.student_idcard_view', $data);
+    }
+
+
+
+    // Student id card get
+    public function StudentIdCardGet(Request $request){
+        
+        $check_data = AssignStudent::where('year_id', $request -> year) -> where('class_id', $request -> class) -> first();
+
+        if($check_data == true){
+        
+            $data['allData'] = AssignStudent::where('year_id', $request -> year) -> where('class_id', $request -> class) -> get();
+            
+            // dd($data['allData'] -> toArray());
+
+             // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
+            // $pdf->SetProtection(['copy', 'print'], '', 'pass');
+            // return $pdf->stream('document.pdf');
+
+            return view('backend.report.student_idcard.student_idcard_pdf', $data);
+
+        }else {
+
+             // msg
+            $notify = [
+                'message'       => "Data Not Found",
+                'alert-type'    => "error"
+            ];
+
+            return redirect() -> back() -> with($notify);
+
+        }
+
+    }
 
 
     

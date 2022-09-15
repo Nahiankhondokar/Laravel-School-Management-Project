@@ -429,6 +429,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/student-result/report/get', [ResultReportController::class, "StudentResultReportGet"]) -> name('student.result.report.get');
 
 
+        // Student ID Card all routes
+        Route::get('/student/id-card/view', [ResultReportController::class, "StudentIdCardView"]) -> name('student.idcard.view');
+
+        Route::get('/student/id-card/get', [ResultReportController::class, "StudentIdCardGet"]) -> name('student.idcard.get');
+
 
 
     });
