@@ -49,6 +49,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(['middleware' => 'prevent-back-history'],function(){
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -439,4 +441,6 @@ Route::group(['middleware' => 'auth'], function(){
     });
 
 
-});
+}); // auth route end
+
+}); // preven browser history middleware end
