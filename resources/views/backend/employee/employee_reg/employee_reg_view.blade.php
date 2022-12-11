@@ -13,7 +13,7 @@
            <div class="box">
               <div class="box-header with-border">
                 <h3 class="box-title">Employee List</h3>
-                <a href="{{ route('employee.reg.create') }}" class="btn btn-rounded btn-info float-right">Employee Register</a>
+                <a href="{{ url('employee/create') }}" class="btn btn-rounded btn-info float-right">Employee Register</a>
               </div>
               <!-- /.box-header -->
               <div class="box-body">

@@ -8,6 +8,7 @@ use App\Models\EmployeeSaleryLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EmployeeRegController extends Controller
 {
@@ -196,13 +197,13 @@ class EmployeeRegController extends Controller
     // student details
     public function EmployeeDetails($id){
 
-        $details = User::find($id);
+        $details = User::where('id', $id) -> first() -> toArray();
+        // dd($details); die;
 
-        // $pdf = PDF::loadView('backend.student.student_reg.student_details_pdf', $student);
-        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-        // return $pdf->stream('document.pdf');
+        $pdf = Pdf::loadView('backend.student.student_reg.student_details_pdf', compact('details')) -> setPaper('a4', 'landscape');
+        return $pdf->download('backend.student.student_reg.student_details_pdf');
 
-        return view('backend.employee.employee_reg.employee_details_pdf', compact('details'));
+        // return view('backend.employee.employee_reg.employee_details_pdf', compact('details'));
 
     }
 

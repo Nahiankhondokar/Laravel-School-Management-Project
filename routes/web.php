@@ -280,7 +280,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'employee'], function(){
 
         
-        // employee registration routes
+        // employee registration routes 
         Route::get('/registration', [EmployeeRegController::class, "EmployeeRegView"]) -> name('employee.reg.view'); 
         Route::get('/create', [EmployeeRegController::class, "EmployeeCreate"]) -> name('employee.reg.create'); 
 
