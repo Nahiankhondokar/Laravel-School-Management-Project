@@ -8,6 +8,7 @@ use App\Models\FeeCategoryAmount;
 use App\Models\StudentClass;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MonthlyFeeControlller extends Controller
 {
@@ -86,11 +87,11 @@ class MonthlyFeeControlller extends Controller
 
     $details = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> where('class_id', $class_id) -> first();
 
-    // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-    // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-    // return $pdf->stream('document.pdf');
+    // Student monthly payslip PDF
+    $pdf = Pdf::loadView('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month')) -> setPaper('a4', 'landscape');
+    return $pdf->download('backend.student.monthly_fee.monthly_fee_pdf');
 
-    return view('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month'));
+    // return view('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month'));
     
     }
     

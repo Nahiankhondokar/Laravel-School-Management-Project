@@ -115,6 +115,9 @@ h2, p{
     </div>
     <hr >
     <br>
+    <br>
+    <br>
+    <br>
     <div class="card-body">
       
         <table id="customers">
