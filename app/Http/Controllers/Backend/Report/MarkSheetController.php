@@ -9,6 +9,7 @@ use App\Models\StudentGrade;
 use App\Models\StudentMark;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MarkSheetController extends Controller
 {
@@ -37,11 +38,10 @@ class MarkSheetController extends Controller
 
             $all_grades = StudentGrade::all();
 
-             // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-            // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-            // return $pdf->stream('document.pdf');
+            $pdf = Pdf::loadView('backend.report.mark_sheet.mark_sheet_pdf', compact('all_marks', 'all_grades', 'fail_count')) -> setPaper('a4', 'landscape');
+            return $pdf->download('backend.report.mark_sheet.mark_sheet_pdf');
 
-            return view('backend.report.mark_sheet.mark_sheet_pdf', compact('all_marks', 'all_grades', 'fail_count'));
+            // return view('backend.report.mark_sheet.mark_sheet_pdf', compact('all_marks', 'all_grades', 'fail_count'));
 
         }else {
 

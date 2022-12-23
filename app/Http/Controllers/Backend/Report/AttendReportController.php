@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\EmployeeAttendance;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AttendReportController extends Controller
 {
@@ -39,14 +40,10 @@ class AttendReportController extends Controller
             $data['leave'] = EmployeeAttendance::with(['Student']) -> where('employee_id', $request -> employee_id) -> where('date', 'like', $date.'%')  -> where('atten_status', 'Leave') -> get() -> count();
 
             $data['month'] =  date('m-Y', strtotime($request -> date));
-
-
-
              // dd($details);
         
-            // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-            // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-            // return $pdf->stream('document.pdf');
+            //  $pdf = Pdf::loadView('backend.report.attend_report.attend_report_pdf', $data) -> setPaper('a4', 'landscape');
+            //  return $pdf->download('backend.report.attend_report.attend_report_pdf');
         
             return view('backend.report.attend_report.attend_report_pdf', $data);
 

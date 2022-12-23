@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Employee;
 use App\Http\Controllers\Controller;
 use App\Models\EmployeeAttendance;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MonthlySalaryController extends Controller
 {
@@ -64,12 +65,11 @@ class MonthlySalaryController extends Controller
         $details = EmployeeAttendance::with(['Student']) -> where('date', 'like', $date.'%') -> where('employee_id', $employee_id) -> get();
 
         // dd($details);
+
+        $pdf = Pdf::loadView('backend.employee.employee_salery.employee_salary_pdf', compact('details')) -> setPaper('a4', 'landscape');
+        return $pdf->download('backend.employee.employee_salery.employee_salary_pdf');
     
-        // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-        // return $pdf->stream('document.pdf');
-    
-        return view('backend.employee.employee_salery.employee_salary_pdf', compact('details'));
+        // return view('backend.employee.employee_salery.employee_salary_pdf', compact('details'));
         
     }
 

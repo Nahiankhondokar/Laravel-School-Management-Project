@@ -52,72 +52,73 @@ h2, p{
               <th>Student Details</th>
               <th>Student Data</th>
             </tr>
+            
             <tr>
               <td>1</td>
               <td>Id No</td>
-              <td>{{ @$details['id_no'] }}</td>
+              <td>{{ @$details['Student']['id_no'] }}</td>
             </tr>
             <tr>
               <td>2</td>
               <td>Role</td>
-              <td>{{ @$details['roll']}}</td>
+              <td>{{ @$details['Student']['role'] ?? 'None'}}</td>
             </tr>
             <tr>
               <td>3</td>
               <td>Name</td>
-              <td>{{ @$details['name'] }}</td>
+              <td>{{ @$details['Student']['name'] }}</td>
             </tr>
             
             
             <tr>
               <td>4</td>
               <td>Father</td>
-              <td>{{ @$details['f_name'] }}</td>
+              <td>{{ @$details['Student']['f_name'] }}</td>
             </tr>
             <tr>
               <td>5</td>
               <td>Mother</td>
-              <td>{{ @$details['m_name']  }}</td>
+              <td>{{ @$details['Student']['m_name']  }}</td>
             </tr>
             <tr>
               <td>6</td>
               <td>Gender</td>
-              <td>{{ @$details['gender']  }}</td>
+              <td>{{ @$details['Student']['gender']  }}</td>
             </tr>
             <tr>
               <td>7</td>
               <td>Religion</td>
-              <td>{{ @$details['religion']  }}</td>
+              <td>{{ @$details['Student']['religion']  }}</td>
             </tr>
             <tr>
               <td>8</td>
               <td>Date of Birth</td>
-              <td>{{ @$details['dob'] }}</td>
+              <td>{{ @$details['Student']['dob'] }}</td>
             </tr>
             <tr>
               <td>9</td>
               <td>Discount</td>
-              <td>{{ @$details['discount'] }}</td>
+              <td>{{ @$details['StudentDiscount']['discount'] }}%</td>
             </tr>
             <tr>
               <td>10</td>
               <td>Year</td>
-              <td>{{ @$details['year']   }}</td>
+              <td>{{ @$details['StudentYear']['name']   }}</td>
             </tr>
             <tr>
               <td>11</td>
               <td>Class</td>
-              <td>{{ @$details['class']  }}</td>
+              <td>{{ @$details['StudentClass']['name']  }}</td>
             </tr>
             <tr>
               <td>12</td>
               <td>Group</td>
-              <td>{{ @$details['group'] }}</td>
+              <td>{{ @$details['StudentGroup']['name'] }}</td>
             </tr>
             <tr>
               <td>13</td>
               <td>Shift</td>
-              <td>{{ @$details['shift'] }}</td>
+              <td>{{ @$details['StudentShift']['name'] }}</td>
             </tr>
         </table>
         <br>

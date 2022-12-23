@@ -107,7 +107,7 @@
                             <td>{{ $item -> roll }}</td>
                             <td>{{ $item['StudentYear']['name'] }}</td>
                             <td>{{ $item -> StudentClass -> name }}</td>
-                            <td>{{ $item -> year_id }}</td>
+                            <td>{{ $item -> Student -> code }}</td>
                             <td>
                               <img id="imgPriview" class="card-img-top shadow" src="{{ ($item -> Student -> image) ? url('media/student/' . $item -> Student -> image) : url('media/no_image.jpg') }}" style="width: 50px; height : 50px; border-radius : 50%;border: 1px solid gray;margin: auto;display: block; object-fit: cover;">
                             </td>
