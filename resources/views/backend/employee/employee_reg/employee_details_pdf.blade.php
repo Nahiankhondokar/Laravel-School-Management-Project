@@ -55,64 +55,64 @@ h2, p{
             </tr>
             <tr>
               <td>1</td>
-              <td>Id No</td>
-              <td>{{ $details -> id_no }}</td>
+              <td> Employee ID No</td>
+              <td>{{ $details['id_no'] }}</td>
             </tr>
             <tr>
               <td>2</td>
               <td>Role</td>
-              <td>{{ $details -> roll}}</td>
+              <td>{{ $details['role'] ?? 'None'}}</td>
             </tr>
             <tr>
               <td>3</td>
               <td>Employee Name</td>
-              <td>{{ $details -> name }}</td>
+              <td>{{ $details['name'] }}</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Employee Designation</td>
-                <td>{{ $details -> Designation -> name }}</td>
+                <td>{{ $details['designation']['name'] }}</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Employee Mobile</td>
-                <td>{{ $details -> cell }}</td>
+                <td>{{ $details['cell']  }}</td>
               </tr>
             <tr>
                 <td>4</td>
                 <td>Salery</td>
-                <td>{{ $details -> salary }} $</td>
+                <td>{{ $details['salary'] }} $</td>
             </tr>
             <tr>
                 <td>3</td>
                 <td>Join Date</td>
-                <td>{{  date('d-m-Y', strtotime($details -> join_date)) }}</td>
+                <td>{{  date('d-m-Y', strtotime($details['join_date'])) }}</td>
             </tr>
             
             <tr>
               <td>4</td>
               <td>Father</td>
-              <td>{{ $details ->  f_name }}</td>
+              <td>{{ $details['f_name']   }}</td>
             </tr>
             <tr>
               <td>5</td>
               <td>Mother</td>
-              <td>{{ $details ->  m_name }}</td>
+              <td>{{ $details['m_name']  }}</td>
             </tr>
             <tr>
               <td>6</td>
               <td>Gender</td>
-              <td>{{ $details -> gender }}</td>
+              <td>{{ $details['gender']  }}</td>
             </tr>
             <tr>
               <td>7</td>
               <td>Religion</td>
-              <td>{{ $details ->  religion }}</td>
+              <td>{{ $details['religion'] }}</td>
             </tr>
             <tr>
               <td>8</td>
               <td>Date of Birth</td>
-              <td>{{ $details ->dob }}</td>
+              <td>{{ $details['dob'] }}</td>
             </tr>
         </table>
         <br>

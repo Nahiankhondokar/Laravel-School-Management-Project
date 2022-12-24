@@ -59,21 +59,21 @@ h2, p{
             </tr>
 
             <tr>
-              <td>{{ $allData['0'] -> Student -> name }} - {{ $allData['0'] -> Student -> id_no }}</td>
-              <td>{{ date('M-Y', strtotime($month)) }}</td>
+              <td>{{ @$allData['0'] -> Student -> name }} - {{ @$allData['0'] -> Student -> id_no }}</td>
+              <td>{{  $month }}</td>
             </tr>
 
-           @foreach($allData as $item)
+          @foreach($allData as $item)
 
-           <tr>
+          <tr>
             <td>{{ date('d-m-Y', strtotime($item -> date)) }}</td>
             <td>{{ $item -> atten_status }}</td>
           </tr>
 
-           @endforeach
+          @endforeach
 
           <tr>
-            <td>Total Absent : <strong>{{ $absent }}</strong>  Total Absent : <strong>{{ $leave }}</strong> </td>
+            <td>Total Absent : <strong>{{ $absent }}</strong>  Total Leave : <strong>{{ $leave }}</strong> </td>
             <td></td>
           </tr>
             

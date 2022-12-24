@@ -7,6 +7,7 @@ use App\Models\AccountOtherCost;
 use App\Models\EmployeeAccountSalary;
 use App\Models\StudentAccountFee;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProfitController extends Controller
 {
@@ -58,12 +59,11 @@ class ProfitController extends Controller
         $date['end_date']= date('Y-m-d', strtotime($request -> end_date));
 
         // dd($details);
+
+        $pdf = Pdf::loadView('backend.report.profit.profit_pdf', $date) -> setPaper('a4', 'landscape');
+        return $pdf->download('backend.report.profit.profit_pdf');
     
-        // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-        // return $pdf->stream('document.pdf');
-    
-        return view('backend.report.profit.profit_pdf', $date);
+        // return view('backend.report.profit.profit_pdf', $date);
 
     }
 

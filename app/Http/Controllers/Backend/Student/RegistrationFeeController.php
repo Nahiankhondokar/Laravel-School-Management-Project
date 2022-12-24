@@ -8,8 +8,7 @@ use App\Models\FeeCategoryAmount;
 use App\Models\StudentClass;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
-
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class RegistrationFeeController extends Controller
 {
@@ -85,11 +84,12 @@ class RegistrationFeeController extends Controller
 
         $details = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> where('class_id', $class_id) -> first();
 
-        // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-        // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-        // return $pdf->stream('document.pdf');
 
-        return view('backend.student.registration_fee.registration_fee_pdf', compact('details'));
+        // Student exam fee payslip PDF
+        $pdf = Pdf::loadView('backend.student.registration_fee.registration_fee_pdf', compact('details')) -> setPaper('a4', 'landscape');
+        return $pdf->download('backend.student.registration_fee.registration_fee_pdf');
+
+        // return view('backend.student.registration_fee.registration_fee_pdf', compact('details'));
         
     }
 

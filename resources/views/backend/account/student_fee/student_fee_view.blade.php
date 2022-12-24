@@ -26,9 +26,10 @@
                               <th>ID NO</th> 
                               <th>Year</th> 
                               <th>Class</th> 
-                              <th>Fee Type</th> 
+                              <th>Fee Type</th>
+                              <th>Date</th> 
                               <th>Amount</th> 
-                              <th>Date</th>
+                              
                           </tr>
                       </thead>
                       <tbody>

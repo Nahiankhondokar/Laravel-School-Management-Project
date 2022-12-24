@@ -35,7 +35,6 @@ class MarkSheetController extends Controller
         
             $all_marks = StudentMark::with(['Subject', 'StudentYear']) -> where('year_id',      $request -> year) -> where('class_id', $request -> class) -> where('exam_type_id', $request -> exam) -> where('id_no', $request -> id_no) -> get();
             
-
             $all_grades = StudentGrade::all();
 
             $pdf = Pdf::loadView('backend.report.mark_sheet.mark_sheet_pdf', compact('all_marks', 'all_grades', 'fail_count')) -> setPaper('a4', 'landscape');

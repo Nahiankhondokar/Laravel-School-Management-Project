@@ -9,6 +9,7 @@ use App\Models\StudentClass;
 use App\Models\StudentMark;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ResultReportController extends Controller
 {
@@ -34,12 +35,11 @@ class ResultReportController extends Controller
             $data['allData'] = StudentMark::select('year_id', 'class_id', 'exam_type_id', 'student_id') -> where('year_id', $request -> year) -> where('class_id', $request -> class) -> where('exam_type_id', $request -> exam) -> groupBy('year_id') -> groupBy('class_id') -> groupBy('exam_type_id') -> groupBy('student_id') -> get();
 
             // dd($data['allData']);
+                
+            $pdf = Pdf::loadView('backend.report.student_result_report.student_result_pdf', $data) -> setPaper('a4', 'landscape');
+            return $pdf->download('backend.report.student_result_report.student_result_pdf');
 
-             // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-            // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-            // return $pdf->stream('document.pdf');
-
-            return view('backend.report.student_result_report.student_result_pdf', $data);
+            // return view('backend.report.student_result_report.student_result_pdf', $data);
 
         }else {
 
@@ -78,12 +78,10 @@ class ResultReportController extends Controller
             $data['allData'] = AssignStudent::where('year_id', $request -> year) -> where('class_id', $request -> class) -> get();
             
             // dd($data['allData'] -> toArray());
+            $pdf = Pdf::loadView('backend.report.student_idcard.student_idcard_pdf', $data) -> setPaper('a4', 'landscape');
+            return $pdf->download('backend.report.student_idcard.student_idcard_pdf');
 
-             // $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', $details);
-            // $pdf->SetProtection(['copy', 'print'], '', 'pass');
-            // return $pdf->stream('document.pdf');
-
-            return view('backend.report.student_idcard.student_idcard_pdf', $data);
+            // return view('backend.report.student_idcard.student_idcard_pdf', $data);
 
         }else {
 

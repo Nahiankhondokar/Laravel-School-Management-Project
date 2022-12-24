@@ -197,7 +197,7 @@ class EmployeeRegController extends Controller
     // student details
     public function EmployeeDetails($id){
 
-        $details = User::where('id', $id) -> first() -> toArray();
+        $details = User::with(['Designation']) -> where('id', $id) -> first() -> toArray();
         // dd($details); die;
 
         $pdf = Pdf::loadView('backend.employee.employee_reg.employee_details_pdf', compact('details')) -> setPaper('a4', 'landscape');

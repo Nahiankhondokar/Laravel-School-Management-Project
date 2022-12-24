@@ -28,9 +28,10 @@ class AttendReportController extends Controller
  
         $singleEmply = EmployeeAttendance::with(['Student']) -> where('employee_id', $request -> employee_id) -> where('date', 'like', $date.'%') -> get();
 
+        // dd($date); die;
+
         if($singleEmply){
 
-             
             $data['allData'] = EmployeeAttendance::with(['Student']) -> where('date', 'like', $date.'%') -> get();
 
             // dd($data['allData']);
@@ -40,12 +41,12 @@ class AttendReportController extends Controller
             $data['leave'] = EmployeeAttendance::with(['Student']) -> where('employee_id', $request -> employee_id) -> where('date', 'like', $date.'%')  -> where('atten_status', 'Leave') -> get() -> count();
 
             $data['month'] =  date('m-Y', strtotime($request -> date));
-             // dd($details);
+            //  dd($data['month']); die;
+    
+            $pdf = Pdf::loadView('backend.report.attend_report.attend_report_pdf', $data) -> setPaper('a4', 'landscape');
+            return $pdf->download('backend.report.attend_report.attend_report_pdf');
         
-            //  $pdf = Pdf::loadView('backend.report.attend_report.attend_report_pdf', $data) -> setPaper('a4', 'landscape');
-            //  return $pdf->download('backend.report.attend_report.attend_report_pdf');
-        
-            return view('backend.report.attend_report.attend_report_pdf', $data);
+            // return view('backend.report.attend_report.attend_report_pdf', $data);
 
         } else {
 
