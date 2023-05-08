@@ -85,6 +85,7 @@ class EmployeeRegController extends Controller
             $user -> dob                   = date('Y-m-d', strtotime($request -> dob));
             $user -> user_type             = 'Employee';
             $user -> code                  = $code;
+            $user -> email                  = 'employee@gmail.com';
             $user -> password              = bcrypt($code);
             $user ->  designation_id       = $request -> designation;
             $user ->  join_date             = date('Y-m-d', strtotime($request -> join_date));

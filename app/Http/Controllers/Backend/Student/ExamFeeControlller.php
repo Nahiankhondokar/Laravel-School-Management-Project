@@ -95,8 +95,8 @@ class ExamFeeControlller extends Controller
 
 
         // Student exam fee payslip PDF
-        $pdf = Pdf::loadView('backend.student.exam_fee.exam_fee_pdf', $data) -> setPaper('a4', 'landscape');
-        return $pdf->download('backend.student.exam_fee.exam_fee_pdf');
+        $pdf = PDF::loadView('backend.student.exam_fee.exam_fee_pdf', $data);
+        return $pdf->download('backend.student.exam_fee.exam_fee_pdf.pdf');
     
         // return view('backend.student.exam_fee.exam_fee_pdf', $data);
         

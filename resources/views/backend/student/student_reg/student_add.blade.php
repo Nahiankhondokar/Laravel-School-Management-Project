@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <h5>Mobile Number<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="cell" class="form-control"> 
+                                                <input type="number" name="cell" class="form-control"> 
                                                 @error('cell')
                                                 <span class="text-danger">
                                                     <strong>{{ $message }}</strong>
@@ -144,7 +144,7 @@
                                         <div class="form-group">
                                             <h5>Discount<span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="discount" class="form-control"> 
+                                                <input type="number" name="discount" class="form-control"> 
                                                 @error('discount')
                                                 <span class="text-danger">
                                                     <strong>{{ $message }}</strong>
@@ -166,7 +166,7 @@
                                                     <option value="{{ $item -> id }}">{{ $item -> name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('religion')
+                                                @error('year')
                                                 <span class="text-danger">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -184,7 +184,7 @@
                                                     <option value="{{ $item -> id }}">{{ $item -> name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('religion')
+                                                @error('class')
                                                 <span class="text-danger">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -202,7 +202,7 @@
                                                     <option value="{{ $item -> id }}">{{ $item -> name }}</option>
                                                     @endforeach
                                                 </select>
-                                                @error('religion')
+                                                @error('group')
                                                 <span class="text-danger">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

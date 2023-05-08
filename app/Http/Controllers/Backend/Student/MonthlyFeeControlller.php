@@ -88,8 +88,8 @@ class MonthlyFeeControlller extends Controller
     $details = AssignStudent::with(['Student', 'StudentDiscount']) -> where('student_id', $student_id) -> where('class_id', $class_id) -> first();
 
     // Student monthly payslip PDF
-    $pdf = Pdf::loadView('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month')) -> setPaper('a4', 'landscape');
-    return $pdf->download('backend.student.monthly_fee.monthly_fee_pdf');
+    $pdf = PDF::loadView('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month'));
+    return $pdf->download('backend.student.monthly_fee.monthly_fee_pdf.pdf');
 
     // return view('backend.student.monthly_fee.monthly_fee_pdf', compact('details', 'month'));
     

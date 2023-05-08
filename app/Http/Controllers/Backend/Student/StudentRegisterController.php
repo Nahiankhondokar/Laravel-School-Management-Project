@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Student;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StuendtRegisterRequest;
 use App\Models\AssignStudent;
 use App\Models\DiscountStudent;
 use App\Models\StudentClass;
@@ -45,7 +46,7 @@ class StudentRegisterController extends Controller
 
 
     // student store
-    public function StudetnRegStore(Request $request) {
+    public function StudetnRegStore(StuendtRegisterRequest $request) {
 
         /**
          *  Multi Table Data Store
@@ -84,6 +85,8 @@ class StudentRegisterController extends Controller
                 $unique = md5(time() . rand()) . '.' . $img -> getClientOriginalExtension();
                 $img -> move(public_path('media/student'), $unique);
 
+            }else {
+                $unique = '';
             }
 
 
@@ -101,6 +104,7 @@ class StudentRegisterController extends Controller
             $user -> dob                   = date('Y-m-d', strtotime($request -> dob));
             $user -> user_type             = 'Student';
             $user -> code                  = $code;
+            $user -> email                  = 'student@gmail.com';
             $user -> password              = bcrypt($code);
             $user ->  image                = $unique;
             $user -> save();
@@ -333,11 +337,10 @@ class StudentRegisterController extends Controller
 
         $details = AssignStudent::with(['Student', 'StudentDiscount', 'StudentYear', 'StudentClass','StudentGroup', 'StudentShift']) -> where('student_id', $student_id) -> first();
 
-        // dd($details); die;
 
         // Student details PDF
-        $pdf = Pdf::loadView('backend.student.student_reg.student_details_pdf', compact('details')) -> setPaper('a4', 'landscape');
-        return $pdf->download('backend.student.student_reg.student_details_pdf');
+        $pdf = Pdf::loadView('backend.student.student_reg.student_details_pdf', compact('details'))->setPaper('a4', 'landscape');
+        return $pdf->download('backend.student.student_reg.student_details_pdf.pdf');
 
         // return view('backend.student.student_reg.student_details_pdf', compact('details'));
 

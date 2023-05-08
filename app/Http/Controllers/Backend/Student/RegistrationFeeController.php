@@ -86,8 +86,8 @@ class RegistrationFeeController extends Controller
 
 
         // Student exam fee payslip PDF
-        $pdf = Pdf::loadView('backend.student.registration_fee.registration_fee_pdf', compact('details')) -> setPaper('a4', 'landscape');
-        return $pdf->download('backend.student.registration_fee.registration_fee_pdf');
+        $pdf = PDF::loadView('backend.student.registration_fee.registration_fee_pdf', compact('details'));
+        return $pdf->download('backend.student.registration_fee.registration_fee_pdf.pdf');
 
         // return view('backend.student.registration_fee.registration_fee_pdf', compact('details'));
         
