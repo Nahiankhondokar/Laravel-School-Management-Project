@@ -29,6 +29,7 @@
                 <p class="text-white-50">Sign in to start your session</p>
               </div>
               <div class="p-30 rounded30 box-shadowed b-2 b-dashed">
+                
                 <form action="{{ route('login') }}" method="post">
                     @csrf
                   <div class="form-group">
@@ -39,7 +40,7 @@
                         ></span>
                       </div>
                       <input
-                        type="text"
+                        type="email"
                         class="form-control pl-15 bg-transparent text-white plc-white"
                         placeholder="Email"
                         name="email"
@@ -104,7 +105,7 @@
                   </div>
                 </form>
 
-                <div class="text-center text-white">
+                {{-- <div class="text-center text-white">
                   <p class="mt-20">- Sign With -</p>
                   <p class="gap-items-2 mb-20">
                     <a
@@ -128,16 +129,16 @@
                       ><i class="fa fa-instagram"></i
                     ></a>
                   </p>
-                </div>
+                </div> --}}
 
-                <div class="text-center">
+                {{-- <div class="text-center">
                   <p class="mt-15 mb-0 text-white">
                     Don't have an account?
                     <a href="{{ route('register') }}" class="text-warning ml-5"
                       >Sign Up</a
                     >
                   </p>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>
