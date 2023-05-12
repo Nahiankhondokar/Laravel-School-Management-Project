@@ -43,8 +43,8 @@ class AttendReportController extends Controller
             $data['month'] =  date('m-Y', strtotime($request -> date));
             //  dd($data['month']); die;
     
-            $pdf = Pdf::loadView('backend.report.attend_report.attend_report_pdf', $data) -> setPaper('a4', 'landscape');
-            return $pdf->download('backend.report.attend_report.attend_report_pdf');
+            $pdf = Pdf::loadView('backend.report.attend_report.attend_report_pdf', $data);
+            return $pdf->download('backend.report.attend_report.attend_report_pdf.pdf');
         
             // return view('backend.report.attend_report.attend_report_pdf', $data);
 

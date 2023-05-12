@@ -60,8 +60,8 @@ class ProfitController extends Controller
 
         // dd($details);
 
-        $pdf = Pdf::loadView('backend.report.profit.profit_pdf', $date) -> setPaper('a4', 'landscape');
-        return $pdf->download('backend.report.profit.profit_pdf');
+        $pdf = Pdf::loadView('backend.report.profit.profit_pdf', $date);
+        return $pdf->download('backend.report.profit.profit_pdf.pdf');
     
         // return view('backend.report.profit.profit_pdf', $date);
 

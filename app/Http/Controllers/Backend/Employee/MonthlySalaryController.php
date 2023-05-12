@@ -66,8 +66,8 @@ class MonthlySalaryController extends Controller
 
         // dd($details);
 
-        $pdf = Pdf::loadView('backend.employee.employee_salery.employee_salary_pdf', compact('details')) -> setPaper('a4', 'landscape');
-        return $pdf->download('backend.employee.employee_salery.employee_salary_pdf');
+        $pdf = Pdf::loadView('backend.employee.employee_salery.employee_salary_pdf', compact('details'));
+        return $pdf->download('backend.employee.employee_salery.employee_salary_pdf.pdf');
     
         // return view('backend.employee.employee_salery.employee_salary_pdf', compact('details'));
         

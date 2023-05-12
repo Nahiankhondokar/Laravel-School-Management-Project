@@ -418,6 +418,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/marksheet/view', [MarkSheetController::class, "MarkSheetView"]) -> name('marksheet.generate.view');
         Route::get('/marksheet/get', [MarkSheetController::class, "MarkSheetGet"]) -> name('marksheet.generate.get');
 
+        Route::get('/marksheet/download/{year}/{class}/{exam}/{id_no}', [MarkSheetController::class, "MarkSheetDownload"]);
+
 
         // Attend Report all routes
         Route::get('/employee-attend/view', [AttendReportController::class, "AttendReportView"]) -> name('attend.report.view');

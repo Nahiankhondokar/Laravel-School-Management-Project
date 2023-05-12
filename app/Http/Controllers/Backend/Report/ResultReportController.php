@@ -78,8 +78,8 @@ class ResultReportController extends Controller
             $data['allData'] = AssignStudent::where('year_id', $request -> year) -> where('class_id', $request -> class) -> get();
             
             // dd($data['allData'] -> toArray());
-            $pdf = Pdf::loadView('backend.report.student_idcard.student_idcard_pdf', $data) -> setPaper('a4', 'landscape');
-            return $pdf->download('backend.report.student_idcard.student_idcard_pdf');
+            $pdf = Pdf::loadView('backend.report.student_idcard.student_idcard_pdf', $data);
+            return $pdf->download('backend.report.student_idcard.student_idcard_pdf.pdf');
 
             // return view('backend.report.student_idcard.student_idcard_pdf', $data);
 
