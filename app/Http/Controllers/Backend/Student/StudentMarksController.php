@@ -36,11 +36,20 @@ class StudentMarksController extends Controller
 
     // student get mark
     public function StudentGetMark(Request $request){
-        
+
+
+        $student_marks = StudentMark::where('class_id', $request -> class_id) -> where('year_id', $request -> year_id)->where('exam_type_id', $request->exam_id)->count();
+
+        if($student_marks > 0){
+            return [
+                'isAdded' => true,
+                'message' => 'Mark already added of this subject'
+            ];
+        }
+
         // return $request -> class_id . 'or' . $request -> year_id;
         $allData = AssignStudent::with(['Student']) -> where('class_id', $request -> class_id) -> where('year_id', $request -> year_id) ->get();
 
-        // dd($allData);
         return $allData;
 
     }
